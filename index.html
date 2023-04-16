@@ -170,6 +170,121 @@
 
 
   
+    <article id="post-first" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/15/first/" class="article-date">
+  <time class="dt-published" datetime="2023-04-15T12:06:26.132Z" itemprop="datePublished">2023-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="VUE"><a href="#VUE" class="headerlink" title="VUE"></a>VUE</h1><p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/quick-start.html#creating-a-vue-application">https://cn.vuejs.org/guide/quick-start.html#creating-a-vue-application</a><br>一个前端框架，主要负责帮助搭建搭建页面<br>vue 负责vm的工作（视图模型），通过vue可以将视图和模型相关联。</p>
+<ul>
+<li>当模型发送变化时，视图会自动更新</li>
+<li>也可以通过视图去操作模型</li>
+</ul>
+<p>vue 的特点：、</p>
+<ul>
+<li>组件化开发</li>
+<li>声明式的编程</li>
+</ul>
+<hr>
+<p>##使用方式</p>
+<ul>
+<li>直接在网页中使用<ul>
+<li><p>引入vue</p>
+<blockquote>
+<p>&lt;script src&#x3D;”<a target="_blank" rel="noopener" href="https://unpkg.com/vue@3/dist/vue.global.js%22&gt;&lt;/script">https://unpkg.com/vue@3/dist/vue.global.js&quot;&gt;&lt;/script</a>&gt;</p>
+</blockquote>
+</li>
+<li><p>创建一个新组件，在vue3 中，组件就是一个普通的js 对象</p>
+<ul>
+<li>组件用来创建组件实例</li>
+<li>组件 –&gt; 组件生成组件实例 –&gt; 虚拟DOM –&gt; DOM<blockquote>
+<p>const Root &#x3D; {<br>  data(){<br>  return {<br>      message:””&#x2F;&#x2F;data 方法返回的对象，其中的属性会自动添加到组件实例当中<br>  }<br>  },<br>  &#x2F;&#x2F;在模板中可以直接访问组件实例中的属性<br>  &#x2F;&#x2F;在模板中可以通过 来访问到组件实例中的属性<br>  template:”&lt;h1&gt;&lt;&#x2F;h1&gt;“<br>  }<br>  &#x2F;&#x2F;创建app 实例<br>  const app &#x3D; Vue. creatApp(Root)<br>  &#x2F;&#x2F;将实例在页面中挂载<br>  app.mount(“#ID”)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>缩略 </p>
+<blockquote>
+<p>Vue.creatApp(Root).mount(“#ID)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/15/first/" data-id="clgjioxay0000v0w8hfkb61yw" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/15/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2023-04-15T11:37:29.201Z" itemprop="datePublished">2023-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/15/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/15/hello-world/" data-id="clgjioxb20001v0w8hg3432ve" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
 
 
 </section>
@@ -202,6 +317,14 @@
         
           <li>
             <a href="/2023/04/16/VUE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/15/first/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/15/hello-world/">Hello World</a>
           </li>
         
       </ul>
