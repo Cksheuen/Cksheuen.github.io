@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>一次字节 | Cksheuen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="字节2023.4.13  ##计算机网络概论 协议：协议定义了在两个或多个通信实体之间交换的报文格式和顺序，以及报文发送和&#x2F;或接收一条报文或其他事件所采取的动作。 标头和载荷 网络祖传部分：由主机、路由器、交换机等组成网络结构：网络的网络信息交换方式：电路交换和分组交换网络分层：分清职责、物理层、链路层、网络层、运输层和应用层网络协议：标题和载荷 ###Web中的网络  http 协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次字节">
+<meta property="og:url" content="http://cksheuen.com/2023/09/14/%E5%AD%97%E8%8A%82/index.html">
+<meta property="og:site_name" content="Cksheuen&#39;s Blog">
+<meta property="og:description" content="字节2023.4.13  ##计算机网络概论 协议：协议定义了在两个或多个通信实体之间交换的报文格式和顺序，以及报文发送和&#x2F;或接收一条报文或其他事件所采取的动作。 标头和载荷 网络祖传部分：由主机、路由器、交换机等组成网络结构：网络的网络信息交换方式：电路交换和分组交换网络分层：分清职责、物理层、链路层、网络层、运输层和应用层网络协议：标题和载荷 ###Web中的网络  http 协议">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-14T05:24:11.967Z">
+<meta property="article:modified_time" content="2023-09-14T05:25:30.285Z">
+<meta property="article:author" content="Cksheuen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Cksheuen's Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Cksheuen's Blog </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Cksheuen </div>
+      <div class="dot"></div>
+      <div class="subtitle">This is the subtitle </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/Cksheuen" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2023/09 ">
+          September 2023 
+          <div class="archive-count">11 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/04 ">
+          April 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2023/09/14/--node.js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--/" title="学完之后一脸懵的Node.js" >
+            <div class="recent-link-text">
+              学完之后一脸懵的Node.js
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/GIT&&GitHub/" title="GIT&GitHub" >
+            <div class="recent-link-text">
+              GIT&amp;GitHub
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/JS%E2%80%94%E2%80%94%E8%AF%A5%E5%AD%A6%E7%9A%84%E9%80%83%E4%B8%8D%E6%8E%89/" title="发现太菜察觉漏学所以~被迫~自愿回来重学的JS" >
+            <div class="recent-link-text">
+              发现太菜察觉漏学所以~被迫~自愿回来重学的JS
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/REST%20%E5%92%8C%20AJAX%20(%E5%8C%85%E5%90%AB%20Fetch%20%E5%92%8C%20Axios)/" title="REST和AJAX（含Fetch和Axios）" >
+            <div class="recent-link-text">
+              REST和AJAX（含Fetch和Axios）
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/title-%20VUE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="VUE学习笔记（版本一）" >
+            <div class="recent-link-text">
+              VUE学习笔记（版本一）
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-字节" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        一次字节
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-09-14T05:24:11.967Z" itemprop="datePublished">2023-09-14</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.9k words 
+          </div>
+        </div>
+        
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="字节"><a href="#字节" class="headerlink" title="字节"></a>字节</h1><p>2023.4.13</p>
+<hr>
+<p>##计算机网络概论</p>
+<p>协议：<br>协议定义了在两个或多个通信实体之间交换的报文<font color = "red">格式和顺序</font>，以及报文发送和&#x2F;或接收一条报文或其他事件所采取的动作。</p>
+<p>标头和载荷</p>
+<p>网络祖传部分：由主机、路由器、交换机等组成<br>网络结构：网络的网络<br>信息交换方式：电路交换和分组交换<br>网络分层：分清职责、物理层、链路层、网络层、运输层和应用层<br>网络协议：标题和载荷</p>
+<p>###Web中的网络</p>
+<ul>
+<li>http 协议<ul>
+<li>http1：具有队头堵塞的缺陷</li>
+<li>http2：部分解决队头堵塞问题（在TCP上）<ul>
+<li>调整响应传输的优先级</li>
+<li>头部压缩</li>
+<li>Server Push</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>##操作系统启动</p>
+<ul>
+<li>BIOS</li>
+<li>UEFI<ul>
+<li>Bootloader</li>
+</ul>
+</li>
+</ul>
+<p>##Linux 版本</p>
+<ul>
+<li>内核版本</li>
+<li>发行版本<ul>
+<li>linux内核 + 常用软件 &#x3D; linux发行版本</li>
+</ul>
+</li>
+</ul>
+<p>命令查询linux版本信息</p>
+<ul>
+<li>uname -a</li>
+<li>cat &#x2F;proc&#x2F;version</li>
+<li>cat &#x2F;etc&#x2F;os-release</li>
+</ul>
+<p>###linux系统应用领域</p>
+<ul>
+<li>IT服务器</li>
+<li>嵌入式和只能设备</li>
+<li>个人办公桌面</li>
+<li>学术研究和软件研发</li>
+</ul>
+<p>###linux基本组成</p>
+<ul>
+<li>内核</li>
+<li>shell（命令解释器</li>
+<li>文件系统（存入磁盘</li>
+<li>应用程序</li>
+</ul>
+<p>###linux体系结构</p>
+<ul>
+<li>用户空间<ul>
+<li>应用程序</li>
+<li>GNU C Library</li>
+</ul>
+</li>
+<li>内核空间<ul>
+<li>系统调用</li>
+<li>内核</li>
+<li>平台架构相关的代码</li>
+</ul>
+</li>
+</ul>
+<p>###进程管理</p>
+<ul>
+<li>进程时正在执行的一个程序或命令</li>
+<li>进程有自己的地址空间，占用一定的系统 资源</li>
+<li>一个CPU核同一时间只能运行一个进程</li>
+<li>进程由它的进程ID（PID）和它父进程的进程ID（PPID）唯一识别</li>
+</ul>
+<p>查看启动的nginxjc</p>
+<blockquote>
+<p>ps -ef | grep nginx</p>
+</blockquote>
+<p>查看某个jc</p>
+<blockquote>
+<p>top -p ID</p>
+</blockquote>
+<p>关闭进程</p>
+<blockquote>
+<p>kill ID</p>
+</blockquote>
+<p>全部进程动态视图</p>
+<blockquote>
+<p>top</p>
+</blockquote>
+<p>###进程调度<br>进程调度是指操作系统按某种策略或规则选择进程占用CPU进行运行的过程<br>创建完成 就绪 运行 僵死（向父进程发送结束信号） 结束</p>
+<ul>
+<li>R 可执行状态</li>
+<li>S 可中断睡眠状态</li>
+<li>D 不可终端睡眠状态</li>
+<li>T 暂停状态或跟踪状态</li>
+<li>Z 退出状态，进程成为僵尸进程</li>
+<li>X 退出状态，进程即将被销毁</li>
+</ul>
+<p>###进程调度原则</p>
+<ul>
+<li>一个CPU核同一事件只能运行一个进程</li>
+<li>每个进程有近乎相等的执行时间</li>
+<li>对于逻辑CPU而言进程调度使用轮询的方式执行，当轮询完成则回到第一个进程反复</li>
+<li>进程执行消耗时间和进程量成正比</li>
+</ul>
+<p>###进程的系统调用<br>内核空间：系统内核运行的空间（内核态<br>用户空间：应用程序运行的空间（用户态</p>
+<p>###文件系统<br>文件内容</p>
+<ul>
+<li>普通文件</li>
+<li>目录</li>
+<li>设备</li>
+<li>套接字</li>
+</ul>
+<p>linux文件系统采用树状的目录结构，最上层&#x2F;（根）目录</p>
+<p>####虚拟文件系统（VFS）</p>
+<ul>
+<li>对应用层提供一个标准的文件操作接口</li>
+<li>对文件系统提供一个标准的文件接入接口</li>
+</ul>
+<p>查看文件系统类型指令<br>df命令报告文件系统磁盘空间利用率</p>
+<blockquote>
+<p>df -T</p>
+</blockquote>
+<p>mount命令时挂在文件系统用的，不带任何参数运行，会打印包含文件系统在内的磁盘分区的信息</p>
+<blockquote>
+<p>mount</p>
+</blockquote>
+<p>####文件基本操作</p>
+<blockquote>
+<p>ls #查看文件夹下内容<br>mkdir demo #创建文件夹<br>mv demo &#x2F;home #移动demo文件夹到&#x2F;home<br>rm -r demo #删除demo文件夹<br>touch file.txt #创建空文件<br>cp file.txt file_bak.txt #复制文件</p>
+</blockquote>
+<p>###用户账户</p>
+<ul>
+<li>用户账号<ul>
+<li>普通用户账号：在系统中进行普通作业</li>
+<li>超级用户账号：在系统中对普通用户和整个系统进行管理</li>
+</ul>
+</li>
+<li>组账号<ul>
+<li>标准组： 可以容纳多个用户</li>
+<li>私有组：只有用户自己</li>
+</ul>
+</li>
+</ul>
+<p>####查看用户信息</p>
+<blockquote>
+<p>查看当前登录用户信息<br>w<br>查看当前用户所属的组<br>groups<br>查看用户的uid信息<br>id xxxx</p>
+</blockquote>
+<p>###文件权限<br>文件权限关于用户有三个概念：</p>
+<ul>
+<li>所有者：文件的所有者</li>
+<li>所在组：文件的所有者所在的组</li>
+<li>其他人：除文件所有者及所在组外的其他人</li>
+</ul>
+<p>每个用户多余文件都有不同权限<br>读（D）、写（W）、执行（X）</p>
+<blockquote>
+<p>d rwx r-x r-x</p>
+</blockquote>
+<p>####用户权限操作</p>
+<blockquote>
+<p>在根目录创建一个文件夹，查看当前用户拥有文件夹的权限<br>cd &#x2F; &amp;&amp;mkd demo &amp;&amp; ls -ld demo</p>
+</blockquote>
+<blockquote>
+<p>sudo useradd ceshi #创建一个用户，并赋予可写操作<br>sudo passw ceshi #设置用户密码<br>su ceshi #切换ceshi用户登录<br>cd demo #进入demo文件夹<br>touch index,js #创建index.js文件，提示无权限，需要给ceshi用户demo文件夹的权限</p>
+</blockquote>
+<blockquote>
+<p>sudo chown -R ceshi:ceshi .&#x2F;demo #demo文件夹权限ceshi<br>用户<br>su ceshi #切换ceshi用户登录<br>cd demo #进入demo文件夹<br>touch index.js #创建index.js文件夹成功</p>
+</blockquote>
+<p>###软件包</p>
+<ul>
+<li>软件包<ul>
+<li>通常指的时一个应用程序，它可以是一个GUI应用程序、命令行工具或（其他软件程序需要的）软件库</li>
+</ul>
+</li>
+<li>软件包管理<ul>
+<li>底层工具：主要用来处理安装和删除软件包文件等任务，DPKG,RPM</li>
+<li>上层工具：主要用于数据的搜索任务和依赖解析任务，APT,YUM,DNF</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作系统</th>
+<th>格式</th>
+<th>软件包管理系统</th>
+<th>前端工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Debian</td>
+<td>.deb</td>
+<td>dpkg</td>
+<td>apt,apt-get</td>
+</tr>
+<tr>
+<td>Ubuntu</td>
+<td>.deb</td>
+<td>dpkg</td>
+<td>apt,apt-get</td>
+</tr>
+<tr>
+<td>CentOS</td>
+<td>.rpm</td>
+<td>rpm</td>
+<td>yum</td>
+</tr>
+<tr>
+<td>Fedora</td>
+<td>.rpm</td>
+<td>rpm</td>
+<td>dnf</td>
+</tr>
+<tr>
+<td>openSUSE</td>
+<td>.rpm</td>
+<td>rpm</td>
+<td>zypper</td>
+</tr>
+</tbody></table>
+<p>###Debian APT 常用命令</p>
+<ul>
+<li>列出所有可更新的软件清单命令： apt update</li>
+<li>安装指定的软件命令：apt install &lt;package_name&gt;</li>
+<li>安装多个软件包：apt install &lt;package_1&gt; &lt;package_2&gt; &lt;package_3&gt;</li>
+<li>更新指定的软件命令：apt update &lt;package_name&gt;</li>
+<li>删除软件包命令：apt remove &lt;package_name&gt;</li>
+<li>查找软件包命令：apt search &lt;keyword&gt;</li>
+<li>列出所有已安装的包：apt list –installed</li>
+</ul>
+<p>###Debian 配置软件源<br>通常Debian系的Linux软件源配置文件：&#x2F;etc&#x2F;apt&#x2F;source.list<br>镜像地址：<a target="_blank" rel="noopener" href="https://mirrors.aliyun.con/">https://mirrors.aliyun.con/</a><br>&#x2F;dists：查看系统代号<br>&#x2F;pool：查看软件分支</p>
+<blockquote>
+<p>deb <a target="_blank" rel="noopener" href="https://mirrors.aliyun.con/">https://mirrors.aliyun.con/</a> buster main contrib non-free</p>
+</blockquote>
+<p>##<strong>shell</strong></p>
+<p>###shell基础概念</p>
+<ul>
+<li>解释器<ul>
+<li>bash内置命令</li>
+<li>GNU核心工具</li>
+<li>…</li>
+</ul>
+</li>
+<li>编程语言<ul>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<p>###命令和语法</p>
+<p>####变量</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用域</th>
+<th>声明方式</th>
+<th>规范</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自定义变量</td>
+<td>当前shell</td>
+<td>&#x3D;</td>
+<td>字符串、整型、浮点型、日期型</td>
+</tr>
+<tr>
+<td>环境变量</td>
+<td>当前shell及其子shell</td>
+<td>export、declare -x</td>
+<td></td>
+</tr>
+<tr>
+<td>系统环境变量</td>
+<td>所有shell</td>
+<td>启动加载</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>自定义变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">变量名=变量值（等号左右不能有空格）</span></span><br><span class="line">page_size=1</span><br><span class="line">page_num=2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">将命令复制给变量</span></span><br><span class="line">_ls=ls</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">将命令结果赋值给变量</span></span><br><span class="line">file_list=$&#123;ls -a&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">默认字符串，不会进行 + 运算</span></span><br><span class="line">total=page_size*page_num is wrong</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">声明变量为整型</span></span><br><span class="line">let total=page_size*page_num</span><br><span class="line"></span><br><span class="line">declare -i total=page_size*page_num</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">导出环境变量</span></span><br><span class="line">xport total</span><br><span class="line"></span><br><span class="line">declare -x total</span><br></pre></td></tr></table></figure>
+
+<p>###declare [+&#x2F;-] 选项 变量</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-</td>
+<td>给变量设定类型属性</td>
+</tr>
+<tr>
+<td>+</td>
+<td>取消变量的类型属性</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>将变量声明为数组类型</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>将变量声明为整数型</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>将变量声明为环境变量</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>将变量声明为只读变量</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>显示指定变量的被声明的类型</td>
+</tr>
+</tbody></table>
+<p>系统环境变量</p>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>含义</th>
+<th>常见操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$</code>0</td>
+<td>当前shell名称&#x2F;脚本名称</td>
+<td><code>$</code>1$2等可以获取到传入参数</td>
+</tr>
+<tr>
+<td><code>$</code>#</td>
+<td>传入脚本的参数数量</td>
+<td>if[<code>$</code># -gt 1]</td>
+</tr>
+<tr>
+<td><code>$</code>*</td>
+<td>传入脚本的所有参数</td>
+<td></td>
+</tr>
+<tr>
+<td><code>$</code>?</td>
+<td>上条命令执行的状态码</td>
+<td>if[<code>$</code>? -eq 0]</td>
+</tr>
+<tr>
+<td><code>$</code>PS1</td>
+<td>命令提示符</td>
+<td>export PS1&#x3D;”\u@\h \w&gt; “</td>
+</tr>
+<tr>
+<td><code>$</code>HOME</td>
+<td>用户主文件夹</td>
+<td>cd ~</td>
+</tr>
+<tr>
+<td><code>$</code>PATH</td>
+<td>全局命令的搜索路径</td>
+<td>PATH&#x3D;$PATH:[新增路径]</td>
+</tr>
+</tbody></table>
+<p>###配置文件加载</p>
+<p>###管道<br>|<code>$</code>#|传入脚本的参数数量|if[<code>$</code># -gt 1]|</p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2023/09/14/title-%20VUE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+      title="VUE学习笔记（版本一）"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        VUE学习笔记（版本一）
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/09/14/CSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+      title="从定位开始的CSS笔记"
+     >
+
+    <p class="title-text">
+      
+        从定位开始的CSS笔记
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2023 Cksheuen<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>

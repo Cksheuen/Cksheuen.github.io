@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>JS笔记但是不全 | Cksheuen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="JS学习笔记####输出语句  alert(“”);&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;amp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS笔记但是不全">
+<meta property="og:url" content="http://cksheuen.com/2023/09/14/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Cksheuen&#39;s Blog">
+<meta property="og:description" content="JS学习笔记####输出语句  alert(“”);&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;amp">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-14T05:24:11.957Z">
+<meta property="article:modified_time" content="2023-09-14T05:26:47.911Z">
+<meta property="article:author" content="Cksheuen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Cksheuen's Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Cksheuen's Blog </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Cksheuen </div>
+      <div class="dot"></div>
+      <div class="subtitle">This is the subtitle </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/Cksheuen" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2023/09 ">
+          September 2023 
+          <div class="archive-count">11 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/04 ">
+          April 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2023/09/14/--node.js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--/" title="学完之后一脸懵的Node.js" >
+            <div class="recent-link-text">
+              学完之后一脸懵的Node.js
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/GIT&&GitHub/" title="GIT&GitHub" >
+            <div class="recent-link-text">
+              GIT&amp;GitHub
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/JS%E2%80%94%E2%80%94%E8%AF%A5%E5%AD%A6%E7%9A%84%E9%80%83%E4%B8%8D%E6%8E%89/" title="发现太菜察觉漏学所以~被迫~自愿回来重学的JS" >
+            <div class="recent-link-text">
+              发现太菜察觉漏学所以~被迫~自愿回来重学的JS
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/REST%20%E5%92%8C%20AJAX%20(%E5%8C%85%E5%90%AB%20Fetch%20%E5%92%8C%20Axios)/" title="REST和AJAX（含Fetch和Axios）" >
+            <div class="recent-link-text">
+              REST和AJAX（含Fetch和Axios）
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/title-%20VUE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="VUE学习笔记（版本一）" >
+            <div class="recent-link-text">
+              VUE学习笔记（版本一）
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-JS学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        JS笔记但是不全
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-09-14T05:24:11.957Z" itemprop="datePublished">2023-09-14</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            6.3k words 
+          </div>
+        </div>
+        
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="JS学习笔记"><a href="#JS学习笔记" class="headerlink" title="JS学习笔记"></a>JS学习笔记</h1><p>####输出语句</p>
+<blockquote>
+<p>alert(“”);&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#x2F;&#x2F;警告框显示——函数<br>console.log(‘’);&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#x2F;&#x2F;在控制台显示——方法<br>document.write(‘’);&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#x2F;&#x2F;向网页中输出<br>###<strong>编写位置</strong></p>
+</blockquote>
+<ul>
+<li>网页内部的scripy标签</li>
+<li>外部js文件，通过script标签进行引入<ul>
+<li>&lt; script src&#x3D;”” &gt;</li>
+</ul>
+</li>
+<li>编写到指定的属性中</li>
+</ul>
+<p>###<strong>基本语法</strong></p>
+<ul>
+<li>区别大小写</li>
+<li>多个空格与换行会被忽略<ul>
+<li>可以以此进行格式化</li>
+</ul>
+</li>
+<li>js中每条语句都应该以封号结尾<ul>
+<li>js具有自动添加封号的机制</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>字面量和变量</strong><br>####<strong>字面量</strong></p>
+<ul>
+<li>就是一个值，所代表含义就是字面意思</li>
+<li>在js中，所有字面量都可以直接使用</li>
+<li>但是直接使用并不方便</li>
+</ul>
+<p>####<strong>变量</strong></p>
+<ul>
+<li>可以用来“存储”字面量</li>
+<li>存储的字面量可以随意地修改</li>
+<li>通过变量可以描述字面量，变量比较方便修改</li>
+<li>let&#x2F;var 变量名 声明变量</li>
+<li>a &#x3D; ** 变量赋值</li>
+<li>动态类型（没有类型）</li>
+</ul>
+<p>####<strong>常量</strong></p>
+<ul>
+<li>声明 const</li>
+</ul>
+<p>####<strong>标识符</strong><br>在js中，所有可以由我们自主命名的</p>
+<ul>
+<li>只由字母、数字、下划线、$，且不能以数字开头</li>
+<li>不能是关键字和保留字，也不建议使用内置的函数和类名</li>
+<li>命名规范<ul>
+<li>驼峰命名法<ul>
+<li>首字母小写，每个单词开头大写</li>
+<li>maxLength</li>
+<li>borderLeftWidth</li>
+<li>类名使用大驼峰</li>
+<li>MaxLength</li>
+<li>常量的字母全部大写</li>
+<li>MAX_LENGTH</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>####<strong>数值</strong><br>#####<strong>1.数值（Number)</strong></p>
+<ul>
+<li>在js中所有整数和浮点数都属于Number</li>
+<li>js中数值不是无限大的，超过一定值显示近似值</li>
+<li>Infinity表示无穷大</li>
+<li>要注意计算中的精度</li>
+<li>NaN表示非法计算(Not a Number)</li>
+</ul>
+<p>#####<strong>2.大整数(BigInt)</strong></p>
+<ul>
+<li>表示一些特别大的整数</li>
+<li>大整数以n结尾，它可以表示的数字范围是内存以内无限大</li>
+</ul>
+<p>#####<strong>3.其他进制的数字</strong></p>
+<ul>
+<li>二进制 0b</li>
+<li>八进制 0o</li>
+<li>十六进制 0x</li>
+</ul>
+<p>#####<strong>4.字符串(string)</strong></p>
+<ul>
+<li>字符串中使用单引号或双引号来表示字符串</li>
+<li>转义字符\</li>
+<li>单引号中可以嵌套双引号</li>
+<li>模板字符串<ul>
+<li>使用反单引号来表示模板单引号</li>
+<li>模板字符串中可以嵌入变量</li>
+<li><blockquote>
+<p>‘$(变量名)’</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>#####<strong>5.布尔值(boolean)</strong></p>
+<ul>
+<li>逻辑判断真假</li>
+<li>true or false</li>
+</ul>
+<p>#####<strong>6.空值(null)</strong></p>
+<ul>
+<li>空值表示空对象</li>
+<li>空值只有一个null</li>
+<li>使用typeof检查空值会返回object</li>
+<li>使用typeof无法检查空值</li>
+</ul>
+<p>#####<strong>7.未定义(undefined)</strong></p>
+<ul>
+<li>当声明后为赋值则为</li>
+<li>类型值只有一个，即为undefined</li>
+</ul>
+<p>#####<strong>8.符号(Symbol)</strong></p>
+<blockquote>
+<p>let c &#x3D; Symbol</p>
+</blockquote>
+<ul>
+<li>用来创造一个唯一的标识</li>
+</ul>
+<blockquote>
+<p>JS一共有其中原始值（以上除其他进制的数字外的其他）<br>原始值在JS中一经创建无法改变<br>####<strong>类型检查</strong><br>typeof 运算符 返回数值的类型<br>####<strong>类型转换</strong><br>类型转换指将一组数据类型转换为其他类型<br>主要是将其他类型转换为字符串、数值和布尔值<br>####转换为字符串<br>1、调用toString()方法将其他类型转换为字符串<br>调用 xxx 的 yyy 方法——&gt;xxx.yyy()<br>a.toString()——根据a数值创建一个字符串，对a无影响<br>a &#x3D; a.toString()——将a转换为字符串类型<br>——null 和 undefined 没有toString()，调用会报错</p>
+</blockquote>
+<p>2、调用String()函数将其他类型转换为字符串</p>
+<blockquote>
+<p>b &#x3D; String(b)<br>对拥有 toString()，本质是调用toString()<br>null 和 undefined 没有toString(),则直接转换<br>####转换为数值<br>1、使用 Number() 函数</p>
+</blockquote>
+<ul>
+<li>转换的情况：<ul>
+<li>如果字符串是一个合法的数字，则正常转换</li>
+<li>如果不是合法数字，则转换为NaN</li>
+<li>如果字符串是空串或纯空格的字符串，转换为0</li>
+<li>true-&gt;1   false-&gt;0</li>
+<li>null 转换为0</li>
+<li>undefined 转换为NaN</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>a &#x3D; Number( a )</p>
+</blockquote>
+<p>2、专门用来转换字符串为书hi的方法</p>
+<ul>
+<li>parseInt()——将一个字符串转换为整数<ul>
+<li>自左向右读取所有有效字符，遇到无效停止（限于整数位）</li>
+<li>也可用来对数字取整</li>
+</ul>
+</li>
+<li>parseFloat()——将一个字符串转换为浮点数<ul>
+<li>自左向右读取所有有效字符，遇到无效停止（可读小数位）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>传的不是字符串，则会先转换成字符串在转换为数值</p>
+</blockquote>
+<p>####转换为布尔值<br>1、使用Boolean() 将其他类型转换为布尔值</p>
+<ul>
+<li>转换的情况<ul>
+<li>数字：0、NaN-&gt;false 其他都为true</li>
+<li>字符串：’’-&gt;false 其余都为true</li>
+<li>null 和 undefined 都转换为false</li>
+<li>对象会转换为true</li>
+</ul>
+</li>
+<li>所有标志空性的没有错误的值都会转换为false<ul>
+<li>0、NaN、’’、null、undefined、false</li>
+</ul>
+</li>
+</ul>
+<p>##<strong>运算符（操作符）</strong><br>###<strong>算数运算符</strong><br>运算符可以用来对一个或多个操作数（值）进行运算</p>
+<ul>
+<li>算术运算符：+、-、<em>、&#x2F;、幂运算2</em>、模运算%</li>
+<li>算术运算时，除了字符串的加法，其余运算的操作数时非数值时，都会先转换成数值来完成运算</li>
+<li>JS时一门弱类型语言，当进行运算时或通过自动的类型转换来完成运算</li>
+<li>当任意一个值和字符串做加法运算时，它会先将其他值转换为字符串，然后再做拼串的操作</li>
+</ul>
+<p>###<strong>赋值运算符</strong><br>赋值运算符用来将一个值赋值给一个变量</p>
+<ul>
+<li>&#x3D;</li>
+<li>+&#x3D;</li>
+<li>……</li>
+<li>??&#x3D; 空赋值<ul>
+<li>只有当变量为null 或 undefined 时才会赋值成功</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>一元的正负</strong></p>
+<ul>
+<li>+：正好<ul>
+<li>不会改变数值的符号</li>
+</ul>
+</li>
+<li>-：负号<ul>
+<li>可以对数值进行符号位取反</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>自增和自减</strong></p>
+<p>##<strong>对象</strong><br>######约等于结构体？<br>###数据类型</p>
+<ul>
+<li>原始值</li>
+<li>对象<ul>
+<li>对象时JS中的一种复合数据类型<ul>
+<li>它相当与一个容器，子啊对象中可以存储各种不同的类型数据<blockquote>
+<p>let boj &#x3D; new Object()</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>对象中可以存储各种不同类型的数据<br>对象中存储的数据，我们称为属性</p>
+<p>####向对象中添加属性</p>
+<blockquote>
+<p>对象.属性名 &#x3D; 属性值</p>
+</blockquote>
+<p>####读取对象中的属性</p>
+<blockquote>
+<p>对象.属性名</p>
+</blockquote>
+<p>###属性名</p>
+<ul>
+<li>通常属性名就是一个字符串，所以属性名可以是任何值，没什么特殊要求<ul>
+<li>但是若属性名太特殊，需要用“[”“]”来设置</li>
+<li>虽然如此，任然建议按照标识符的规范来命名</li>
+</ul>
+</li>
+<li>也可以通过符号( symbol )作为属性名来添加属性<ul>
+<li>获取这种属性时，也必须使用 symbol<blockquote>
+<p>let mysymbol &#x3D; Symbol()<br>obj[mySymbol] &#x3D; “通过 symbol 添加的属性”</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>symbol添加的属性通常不希望外界获取</li>
+<li>“[”“]”一般调用的属性名为变量</li>
+</ul>
+<p>###属性值</p>
+<ul>
+<li>属性值可以为任意数据类型，也可以使用变量</li>
+<li>in 运算<blockquote>
+<p>属性名 in obj<br>有返回true，没有返回false</p>
+</blockquote>
+</li>
+</ul>
+<p>###<strong>创建方法2：</strong></p>
+<blockquote>
+<p>let obj2 &#x3D; {}</p>
+</blockquote>
+<ul>
+<li>此方法创建的对象可以直接添加属性</li>
+</ul>
+<p>###<strong>枚举属性</strong></p>
+<ul>
+<li>指将对象中所有的属性全部获取</li>
+<li>for-in语句<ul>
+<li>for(let propName in 对象){ 语句… }</li>
+<li>for-in 执行次数&#x3D;&#x3D;属性个数<ul>
+<li>每次执行时，都会将属性值赋值给propName</li>
+</ul>
+</li>
+<li>并不是所有的属性都可以枚举，比如使用符号添加的属性</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>可变类型</strong></p>
+<ul>
+<li>原始值都属于不可变类型，一旦创建无法修改</li>
+<li>在内存中不会创建重复的原始值</li>
+<li>对象属于可变类型</li>
+<li>对象创建完成后，可以任意添加删除修改对象中的属性<ul>
+<li>如果两个变量指向同一对象<ul>
+<li>通过一个变量改变对象，另一变量也发生改变</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>改变量和改对象</strong></p>
+<ul>
+<li>修改对象<ul>
+<li>修改对象时，如果有其他变量指向该对象，则所有指向该对象的变量都会受到影响</li>
+</ul>
+</li>
+<li>修改变量<ul>
+<li>修改变量时，只会影响当前的变量</li>
+</ul>
+</li>
+<li>在使用变量存储对象时，很容易因为改变变量指向的对象，提高代码的复杂度，所以在通常情况下，声明存储对象的变量时会使用const</li>
+<li>const只是禁止变量被赋值，对对象的修改没有任何影响</li>
+</ul>
+<p>##<strong>函数(function)</strong></p>
+<ul>
+<li>函数也是一个对象</li>
+<li>它就具有其他对象所有的功能</li>
+<li>函数中可以存储代码，且可以在需要时调用这些代码<blockquote>
+<p>function 函数名 {}<br>调用：<br>函数名()</p>
+</blockquote>
+</li>
+</ul>
+<p>###<strong>函数的定义方式</strong><br>####<strong>函数声明</strong></p>
+<blockquote>
+<p>function 函数名 {}<br>####<strong>函数表达式</strong><br>const fn2 &#x3D; function(){}<br>####<strong>箭头函数</strong><br>fn3 &#x3D; () &#x3D;&gt; 语句<br>fn4 &#x3D; () &#x3D;&gt; {语句…}</p>
+</blockquote>
+<p>####<strong>JS不会检查参数类型，可以传任意类型</strong><br>####<strong>箭头函数返回值</strong></p>
+<ul>
+<li>箭头函数的返回值可以直接写在箭头后<ul>
+<li>如果直接在箭头后设置对象字面量为返回值，对象字面量必须用“()”括起来</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>作用域链</strong></p>
+<ul>
+<li>当我们使用一个变量时，JS优先在当前作用域查找，无,则向外寻找</li>
+<li>全局都无则报错</li>
+</ul>
+<p>###<strong>方法</strong><br>通过对象调用叫方法，直接调用叫函数<br>##<strong>Window对象</strong></p>
+<ul>
+<li>在浏览器中，浏览器为我们提供了一个Window对象，可以直接访问</li>
+<li>Window对象代表的是浏览器窗口，通过该对象可以对浏览器窗口进行各种操作。除此之外Window还负责存储JS中内置的对象和浏览器的宿主对象</li>
+<li>Window对象的属性可以通过Window对象访问，也可以直接访问</li>
+<li>函数就可以认为是Window对象的方法</li>
+<li>向Window对象中添加的属性自动成为全局变量</li>
+<li>var 用来声明变量，作用和let 相同，但是var 不具有块作用域<ul>
+<li>在全局中使用var 声明的变量，会作为Window的对象的属性保存</li>
+<li>使用function 声明的函数，都作为Window 的方法存在</li>
+<li>使用let 声明的变量不会存储在Window对象中 ，而存在一个秘密的小地方</li>
+</ul>
+</li>
+<li>var 虽然没有块作用域，但有函数作用域</li>
+<li><strong>在局部作用域中，若创建变量不适用var 或let 则被认为创建了一个全局变量</strong></li>
+</ul>
+<p>###<strong>变量的提升</strong></p>
+<ul>
+<li>使用var 声明的变量，它会在所有代码执行前声明（但赋值不提前）</li>
+</ul>
+<p>###<strong>函数的提升</strong></p>
+<ul>
+<li>使用函数声明创建的函数，会在其他代码执行前被创建，所有我们可以在函数声明前调用函数</li>
+</ul>
+<p>####<strong>let 声明的变量实际上也会提升，但是不可以在声明前访问</strong><br>###<strong>debug</strong></p>
+<blockquote>
+<p>debugger       断点</p>
+</blockquote>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>在开发中应尽量减少直接在全局作用域中编写代码<br>要精良编写局部作用域<br>如果使用let 声明的变量，可以使用{}来创建块作用域<br>###</p>
+<p>###<strong>立即执行函数(IIFE)</strong></p>
+<ul>
+<li>立即是一个匿名的函数，且它只会调用一次</li>
+<li>可以利用IIFE 来创建一个一次性的函数作用域，避免变量冲突的问题<blockquote>
+<p>(functioin(){<br>…<br>…<br>}());</p>
+</blockquote>
+</li>
+</ul>
+<p>##<strong>this</strong></p>
+<ul>
+<li>函数在执行时，JS解析器每次都会传递进一个隐含的参数</li>
+<li>这个参数叫做this</li>
+<li>this 会指向一个对象<ul>
+<li>this 所指向的对象会根据函数调用方式的不同而不同<ul>
+<li>以函数形式调用时，this 指向的是window</li>
+<li>以方法的形式调用时，this 指向的时调用方法的对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>箭头函数：</p>
+<blockquote>
+<p>([参数]) &#x3D;&gt; 返回值</p>
+</blockquote>
+<p>箭头函数的this：</p>
+<ul>
+<li>没有自己的this，它的this 由外层作用域决定</li>
+<li>箭头函数的this 和它的调用方式无关</li>
+</ul>
+<p>##<strong>严格模式</strong><br>JS运行代码的方式有两种：</p>
+<ul>
+<li>正常模式<ul>
+<li>默认情况下代码都运行在正常模式<ul>
+<li>在正常情况下，语法检查并不严格</li>
+<li>它的原则是，能不报错就尽量不报错</li>
+</ul>
+</li>
+<li>这种处理方式导致代码的运行性能较差</li>
+</ul>
+</li>
+<li>严格模式<ul>
+<li>在严格模式下，语法检查变得严格<ul>
+<li>禁止一些语法</li>
+<li>更容易报错</li>
+<li>提升了性能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>开发中尽量使用严格模式</li>
+</ul>
+<blockquote>
+<p>“use strict”   开启严格模式</p>
+</blockquote>
+<p>##<strong>面向对象编程（OOP）</strong><br>#<strong>DOM</strong></p>
+<ul>
+<li>要使用DOM来操作网页，我们需要浏览器至少得先给我们一个对象才能去完成各种操作</li>
+<li>所以浏览器已经给了我们一个document ，它是一个全局变量可以直接使用（document 代表的是整个网页）</li>
+</ul>
+<p>##<strong>document 对象</strong></p>
+<ul>
+<li>document 对象表示的是整个网页</li>
+<li>document 对象的原型链<ul>
+<li>HTMLDocument -&gt; Document -&gt; Node -&gt; EventTarget -&gt; Object.prototype -&gt; null</li>
+</ul>
+</li>
+<li>凡是在原型链上存在的对象的属性和方法都可以通过Document 去调用</li>
+<li>部分属性<ul>
+<li>document. documentElement –&gt; html根元素</li>
+<li>document. head –&gt; head元素</li>
+<li>document. title –&gt; title元素</li>
+<li>document. body –&gt; body元素</li>
+<li>document. links –&gt; 获取页面中所以的超链接</li>
+</ul>
+</li>
+</ul>
+<p>##<strong>元素节点</strong></p>
+<ul>
+<li>元素节点对象（element）<ul>
+<li>在网页中，每一个标签都是一个元素节点</li>
+<li>如何获取元素节点？<ul>
+<li>通过document 对象来获取元素节点</li>
+<li>通过document 对象来创建元素节点</li>
+</ul>
+</li>
+<li>通过document 来获取已有的元素节点<ul>
+<li>document. getElementByID()<ul>
+<li>根据ID获取一个元素节点对象</li>
+</ul>
+</li>
+<li>document. getElementsByClassName()<ul>
+<li>根据元素的class 属性值获取一组元素节点对象</li>
+<li>返回的是一个类数组对象</li>
+<li>该方法返回的结果是一个实时更新的集合</li>
+</ul>
+</li>
+<li>document. getElementsByTagName()<ul>
+<li>根据标签名获取一组元素节点对象</li>
+<li>返回的结果是可以实时更新的集合</li>
+<li>document. getElementsByTagName(“*”) 获取页面中所有的元素</li>
+<li>根据name 属性获取一组元素节点对象</li>
+<li>返回一个实时更新的集合</li>
+<li>主要用于表单项</li>
+</ul>
+</li>
+<li>document. querySelectorAll()<ul>
+<li>根据选择器去页面中查询元素</li>
+<li>会返回一个数组（不会实时更新）</li>
+</ul>
+</li>
+<li>document. querySelector()<ul>
+<li>根据选择器去页面中查询第一个符合条件的元素</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>创建一个元素节点<ul>
+<li>document. creatElement()<ul>
+<li>根据标签名创建一个元素节点对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>元素节点</strong></p>
+<ul>
+<li>div 元素的原型链<ul>
+<li>HTMLDivElement -&gt; HTMLElement -&gt; Element -&gt; Node -&gt; EventTarget</li>
+<li>通过元素节点对象获取其他节点的方法<ul>
+<li>elements. childNodes 获取当前元素的子节点（会包含空白的子节点）</li>
+<li>elements. children 获取当前元素的子元素</li>
+<li>elements. firstchild</li>
+<li>elements. firstElementChild</li>
+<li>elements. lastElementChild</li>
+<li>elements. nextElementSibling 获取当前元素的下一个兄弟元素</li>
+<li>elements. previousElementSibling 获取当前元素的前一个兄弟元素</li>
+<li>elements. parentNode 获取当前元素的父节点</li>
+<li>elements. parentElement 获取当前元素的前一个兄弟元素</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><ul>
+<li>在DOM中，网页中所欲的文本内容都是文本节点对象<ul>
+<li>可以通过元素来获取其中的文本节点对象，但是我通常不会这么做</li>
+<li>我们可以直接通过元素去修改其中的文本<ul>
+<li>修改文本的三个属性<ul>
+<li>elemtnt. textContent() 获取或修改元素中的文本内容<ul>
+<li>获取的是标签中的内容，不会考虑css 样式</li>
+</ul>
+</li>
+<li>element. innerText 获取或修改元素中的文本内容<ul>
+<li>innerText 获取内容时，会考虑css 样式</li>
+<li>通过innerText去读取CSS 样式，会触发网页的重排（计算CSS样式）</li>
+<li>当字符串中由标签时，会自动对标签进行转义</li>
+</ul>
+</li>
+<li>element. innerHTML 获取或修改元素中的html 代码<ul>
+<li>可以直接向元素中添加html 代码</li>
+<li>innerHTML 插入内容时，有被xxs 注入的风险</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>##<strong>属性节点（Attr）</strong></p>
+<ul>
+<li>在DOM 也是一个对象，通常不需要获取对象而是直接通过元素即可完成对其的各种操作</li>
+<li>如何操作属性节点<ul>
+<li>方式一：<ul>
+<li>读取：元素. 属性名（注意，class 属性需要使用className 来读取）<ul>
+<li>读取一个布尔值时，会返回true 或false</li>
+</ul>
+</li>
+<li>修改：元素. 属性名 &#x3D; 属性值</li>
+</ul>
+</li>
+<li>方式二：<ul>
+<li>读取：元素. getAttribute(属性名)</li>
+<li>修改：元素. setAttributr(属性名,属性值)</li>
+<li>删除：元素. removeAttributr(属性名)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>##<strong>事件（event）</strong></p>
+<ul>
+<li>时间就是用户和页面之间发生的交互行为<ul>
+<li>比如：点击按钮、鼠标移动、双击案件、敲击键盘、松开案件…</li>
+</ul>
+</li>
+<li>可以通过为实际爱你绑定响应函数（回调函数），来完成和用户之间的交互</li>
+<li>绑定响应函数的方式：<ul>
+<li>可以直接在元素的属性中设置</li>
+<li>可以通过为元素的指定属性设置回调函数的形式来绑定事件（一个事件只能绑定一个响应函数）</li>
+<li>可以通过元素addEventListener() 方法来绑定事件</li>
+</ul>
+</li>
+</ul>
+<p>##<strong>文档的加载</strong></p>
+<ul>
+<li>网页时自上向下加载的，如果将js代码编写到网页的上边，js代码在执行时，网页还没有加载完毕，这是会出现无法获取DOM 对象的情况</li>
+<li>window. onload 事件会在窗口的内容加载完毕之后触发</li>
+<li>document 对象的DOMContentLoaded 事件会在当前文档加载完毕之后触发</li>
+<li>如何解决这个问题：<ul>
+<li><p>将script 标签编写到body 的最后</p>
+</li>
+<li><p>将代码编写到window. onload 的回调函数中</p>
+</li>
+<li><p>将代码编写到document 对象的DOMContentLoaded 的回调幻术中</p>
+</li>
+<li><p>将代码编写到外部的js 文件中，，然后以defer 的形式进行引入（执行时机更早，遭遇DOMContentLoaded）<font color="red">（*****）</font></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>添加元素到网页</strong></p>
+<ul>
+<li>element. appendChild()用于给一个节点添加子节点</li>
+<li>element. inserAdjacentElement(“要添加的位置”,ya要添加的元素)<ul>
+<li>beforeend 标签的最后</li>
+<li>afterbegin    第二个</li>
+<li>beforebegin</li>
+<li>afterend 在元素的后边</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>取消默认行为</strong></p>
+<ul>
+<li>使用return false 来取消默认行为（只在xx. xxx &#x3D;  function(){}这种形式绑定的事件中才适用）</li>
+<li>在元素直接添加javascript:;</li>
+</ul>
+<p>###<strong>节点复制</strong></p>
+<ul>
+<li>element. cloneNode()<ul>
+<li>不复制子节点</li>
+<li>加参数true 复制子节点</li>
+</ul>
+</li>
+</ul>
+<p>##<strong>通过js修改css样式</strong></p>
+<ul>
+<li>修改样式的方法：元素. style. 样式名 &#x3D; 样式值</li>
+<li>如果样式名含有- ，则需要将样式表修改为驼峰命名法<ul>
+<li>background-color –&gt; backgroundColor</li>
+</ul>
+</li>
+</ul>
+<p>##<strong>读取样式</strong></p>
+<ul>
+<li><p>getComputedStyle()</p>
+<ul>
+<li>它会返回一个对象，这个对象中包含了当前元素所有的生效的样式</li>
+<li>参数：<ul>
+<li>要获取样式的对象</li>
+<li>要获取的伪元素</li>
+</ul>
+</li>
+<li>返回值：返回的一个对象，对象中存储了当前元素的样式</li>
+<li>注意：样式对象中返回的样式值，不一定能拿来直接计算，所以使用时，一定要确保值时可以计算的才去计算</li>
+</ul>
+</li>
+<li><p>元素. clientHeight</p>
+</li>
+<li><p>元素. clientWidth</p>
+<ul>
+<li>获取元素内部的宽度和高度（包括内容区和内边距）</li>
+</ul>
+</li>
+<li><p>元素. offsetHeight</p>
+</li>
+<li><p>元素. offsetWidth</p>
+<ul>
+<li>获取元素的可见框的大小（包括内容区，内边距和边框）</li>
+</ul>
+</li>
+<li><p>元素. scrollHeight</p>
+</li>
+<li><p>元素. scrollWidth</p>
+<ul>
+<li>获取元素滚动区域大小</li>
+</ul>
+</li>
+<li><p>元素. offsetParent</p>
+<ul>
+<li>获取怨怒是的定位父元素</li>
+<li>定位父元素，离当前元素最近的开启了定位的祖先元素，如果所有的元素都没有开启定位则返回body</li>
+</ul>
+</li>
+<li><p>元素. offsetTop</p>
+</li>
+<li><p>元素. offsetLeft</p>
+<ul>
+<li>获取元素相对于其定位父元素的偏移量</li>
+</ul>
+</li>
+<li><p>元素. scrollTop</p>
+</li>
+<li><p>元素. scrollLeft </p>
+<ul>
+<li>获取或设置滚动条的偏移量</li>
+</ul>
+</li>
+<li><p>除了直接修改样式外，也可以通过修改class 属性来间接地修改样式</p>
+</li>
+<li><p>通过class 修改样式的好处</p>
+<ul>
+<li>可以一次性修改多个样式</li>
+<li>对js 和css 进行解耦</li>
+</ul>
+</li>
+<li><p>元素. classList 是一个对象，对象中提供了对当前元素的类的各种操作方法</p>
+</li>
+<li><p>元素. ClassList. add() 向元素中添加一个或多个class</p>
+</li>
+<li><p>元素. ClassList. remove() 向元素中添加一个或多个class</p>
+</li>
+<li><p>元素. ClassList. toggle() 切换元素中的class</p>
+</li>
+<li><p>元素. ClassList. replace() 替换class</p>
+</li>
+<li><p>元素. ClassList. contains() 检查class</p>
+</li>
+</ul>
+<p>##<strong>事件对象（event）</strong></p>
+<ul>
+<li><p>事件对象</p>
+</li>
+<li><p>事件对象是有浏览器在事件触发时所创建的对象，这个对象中封装了事件相关的各种信息</p>
+</li>
+<li><p>通过事件对象可以获取到事件的详细信息</p>
+<ul>
+<li>比如：鼠标的坐标、键盘的按键..</li>
+</ul>
+</li>
+<li><p>浏览器在创建事件对象后，会将事件对象作为响应函数的参数传递，所有我们可以在事件的回调函数中定义一个形参来接收事件对象</p>
+</li>
+<li><p>在DOM中存在着多种不同类型的事件对象</p>
+<ul>
+<li>多种事件对象有一个共同的祖先 Event<ul>
+<li>event. target 触发事件的对象</li>
+<li>event. currentTarget 绑定事件的对象（同this）</li>
+<li>event. stopProgpagation()&#x2F;&#x2F;取消事件的传导</li>
+<li>event. preventDefault() 取消默认行为</li>
+</ul>
+</li>
+<li>事件的冒泡（bubble）<ul>
+<li>事件的冒泡就是指事件的向上传导</li>
+<li>当元素的上的某个事件被触发后，其祖先元素上的相同事件也会同时被触发</li>
+<li>冒泡的存在大大简化了代码的编写，但是在一些场景下我们并不希望冒泡存在，不希望事件冒泡时，可以通过事件对象来取消冒泡</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在事件的响应函数中：</p>
+<ul>
+<li>event. target 表示的时触发事件的对象</li>
+<li>this 绑定事件的对象</li>
+</ul>
+</li>
+</ul>
+<p>##<strong>事件的委派</strong><br>可以将事件统一绑定给document ，这样点击超链接时由于事件的冒泡，会导致document 上的点击事件被触发，，这样只绑定以此，所有的超链接都会具有这些事件</p>
+<ul>
+<li>委派就是将本该绑定给多个元素的事件，统一绑定给document ，这样可以降低代码复杂度方便维护</li>
+</ul>
+<p>##<strong>事件的捕获</strong></p>
+<ul>
+<li>事件的传播机制：<ul>
+<li>在DOM中，事件的传播可以分为三个阶段：<ul>
+<li>捕获阶段（由祖先元素向祖先元素进行事件的捕获）（默认情况下，事件不会在捕获阶段触发）</li>
+<li>目标阶段（触发事件的对象）</li>
+<li>冒泡阶段（由目标元素向祖先元素进行事件的冒泡）</li>
+</ul>
+</li>
+<li>事件的捕获，指事件从外向内的传导：当前元素触发事件时，会从当前元素最大的祖先元素开始向当前元素进行元素的捕获</li>
+<li>如果希望在捕获阶段触发事件，可以将addEventListener的第三个参数设置为true，一般情况下我们不希望事件在捕获阶段触发，所有通常都不设置第三个参数</li>
+</ul>
+</li>
+<li>event. eventPhase &#x2F;&#x2F;表示事件触发的阶段<ul>
+<li>1 捕获阶段；2 目标阶段；3 冒泡阶段</li>
+</ul>
+</li>
+</ul>
+<p>#<strong>BOM</strong></p>
+<ul>
+<li>浏览器对象模型</li>
+<li>BOM 为我们提供了一组对象，通过这组对象可以完成对浏览器的各种操作</li>
+<li>BOM对象：<ul>
+<li>Window —— 代表浏览器窗口（全局对象）</li>
+<li>Navigator —— 浏览器的对象（可以用来识别浏览器）</li>
+<li>Location —— 浏览器的地址栏信息</li>
+<li>History —— 浏览器的历史记录（空值浏览器的前进后退）</li>
+<li>Screen —— 屏幕的信息</li>
+</ul>
+</li>
+<li>BOM 对象都是作为Window 对象的属性来保存的，所以可以直接在JS 中访问这些对象</li>
+</ul>
+<p>###<strong>Navigator</strong></p>
+<ul>
+<li>userAgent 返回一个用来描述浏览器信息的字符串</li>
+</ul>
+<p>###<strong>Location</strong></p>
+<ul>
+<li>Location 表示的时浏览器的地址栏的信息<ul>
+<li>可以直接将Location 的值修改为一个新的地址，这样会使得网页发生跳转</li>
+<li>Location. assign() 跳转到一个新的地址</li>
+<li>Location. replace() 跳转到一个新的地址（无法通过回退按钮回退）</li>
+<li>Location. reload() 刷新一个页面，可以传递一个true 来强制清缓存刷新</li>
+<li>Location. href 获取当前地址</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>History</strong></p>
+<ul>
+<li>history. back() —— 回退按钮</li>
+<li>history. forward() —— 前进按钮</li>
+<li>history. go( number ) —— 根据数字前进后退</li>
+</ul>
+<p>##<strong>定时器</strong></p>
+<ul>
+<li>通过定时器，可以使代码在指定事件后执行<ul>
+<li>设置定时器的方式有两种<ul>
+<li>setTimeout()<ul>
+<li>参数：<ul>
+<li>回调函数（要执行的代码）</li>
+<li>间隔的事件（毫秒）</li>
+</ul>
+</li>
+<li>关闭定时器<ul>
+<li>clearTimeout</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>setInterval()（没间隔一段时间就会执行一次）<ul>
+<li>参数：<ul>
+<li>回调函数（要执行的代码）</li>
+<li>间隔的事件（毫秒）</li>
+</ul>
+</li>
+<li>关闭定时器<ul>
+<li>clearInterval</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>定时器的本质，就是在指定事件后将函数添加到消息队列中</li>
+<li>setInterval() 每间隔一段时间添加到消息队列中，但是如果函数执行的速度比较慢，它是无法确保每次执行的间隔是一样的</li>
+</ul>
+<p>###<strong>调用栈</strong></p>
+<ul>
+<li>事件循环（event loop）<ul>
+<li>函数在每次执行时，都会产生一个执行环境</li>
+<li>执行环境负责存储函数执行时产生的一切数据</li>
+<li>问题：<ul>
+<li>函数的执行环境存储到了一个叫做调用栈的地方</li>
+<li>栈，是一种数据结构，特点 后进先出</li>
+<li>队列，是一种数据结构，先进先出</li>
+</ul>
+</li>
+<li>调用栈（call stack）<ul>
+<li>调用栈负责存储函数的执行环境</li>
+<li>当一个函数被调用时，它的执行环境会作为一个栈帧插入到调用栈的栈顶，函数执行完毕其栈帧会自动从栈中弹出</li>
+</ul>
+</li>
+<li>消息队列<ul>
+<li>消息队列负责存储将要执行的函数</li>
+<li>当我们触发一个事件时，其响应函数并不是直接就添加到调用栈中的，因为调用栈中有可能会存在一些还没有执行完的代码</li>
+<li>事件触发后，JS引擎是将事件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>#<strong>jQuery</strong></p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2023/09/14/CSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+      title="从定位开始的CSS笔记"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        从定位开始的CSS笔记
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/09/14/TS-Study/"
+      title="太菜所以学的TS二"
+     >
+
+    <p class="title-text">
+      
+        太菜所以学的TS二
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2023 Cksheuen<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>

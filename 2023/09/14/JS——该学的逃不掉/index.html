@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>发现太菜察觉漏学所以~被迫~自愿回来重学的JS | Cksheuen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="JS——该学的逃不掉标签（空格分隔）： 未分类  ##this###函数中的this  this 函数在执行时，JS 解析器每次都会传递一个隐含的参数 this this 会指向一个对象 这个对象会根据函数调用方式的不同而不同 以函数形式调用，this 指向window 以方法形式调用，this 指向调用方法的对象 …   通过this 可以在方法中引用调用方法的对象      12345func">
+<meta property="og:type" content="article">
+<meta property="og:title" content="发现太菜察觉漏学所以~被迫~自愿回来重学的JS">
+<meta property="og:url" content="http://cksheuen.com/2023/09/14/JS%E2%80%94%E2%80%94%E8%AF%A5%E5%AD%A6%E7%9A%84%E9%80%83%E4%B8%8D%E6%8E%89/index.html">
+<meta property="og:site_name" content="Cksheuen&#39;s Blog">
+<meta property="og:description" content="JS——该学的逃不掉标签（空格分隔）： 未分类  ##this###函数中的this  this 函数在执行时，JS 解析器每次都会传递一个隐含的参数 this this 会指向一个对象 这个对象会根据函数调用方式的不同而不同 以函数形式调用，this 指向window 以方法形式调用，this 指向调用方法的对象 …   通过this 可以在方法中引用调用方法的对象      12345func">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-14T05:24:11.967Z">
+<meta property="article:modified_time" content="2023-09-14T05:27:53.739Z">
+<meta property="article:author" content="Cksheuen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Cksheuen's Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Cksheuen's Blog </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Cksheuen </div>
+      <div class="dot"></div>
+      <div class="subtitle">This is the subtitle </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/Cksheuen" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2023/09 ">
+          September 2023 
+          <div class="archive-count">11 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/04 ">
+          April 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2023/09/14/--node.js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--/" title="学完之后一脸懵的Node.js" >
+            <div class="recent-link-text">
+              学完之后一脸懵的Node.js
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/GIT&&GitHub/" title="GIT&GitHub" >
+            <div class="recent-link-text">
+              GIT&amp;GitHub
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/JS%E2%80%94%E2%80%94%E8%AF%A5%E5%AD%A6%E7%9A%84%E9%80%83%E4%B8%8D%E6%8E%89/" title="发现太菜察觉漏学所以~被迫~自愿回来重学的JS" >
+            <div class="recent-link-text">
+              发现太菜察觉漏学所以~被迫~自愿回来重学的JS
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/REST%20%E5%92%8C%20AJAX%20(%E5%8C%85%E5%90%AB%20Fetch%20%E5%92%8C%20Axios)/" title="REST和AJAX（含Fetch和Axios）" >
+            <div class="recent-link-text">
+              REST和AJAX（含Fetch和Axios）
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/title-%20VUE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="VUE学习笔记（版本一）" >
+            <div class="recent-link-text">
+              VUE学习笔记（版本一）
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-JS——该学的逃不掉" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        发现太菜察觉漏学所以~被迫~自愿回来重学的JS
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-09-14T05:24:11.967Z" itemprop="datePublished">2023-09-14</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            7.8k words 
+          </div>
+        </div>
+        
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="JS——该学的逃不掉"><a href="#JS——该学的逃不掉" class="headerlink" title="JS——该学的逃不掉"></a>JS——该学的逃不掉</h1><p>标签（空格分隔）： 未分类</p>
+<hr>
+<p>##<strong>this</strong><br>###<strong>函数中的this</strong></p>
+<ul>
+<li>this<ul>
+<li>函数在执行时，JS 解析器每次都会传递一个隐含的参数 this</li>
+<li>this 会指向一个对象<ul>
+<li>这个对象会根据函数调用方式的不同而不同<ul>
+<li>以函数形式调用，this 指向window</li>
+<li>以方法形式调用，this 指向调用方法的对象</li>
+<li>…</li>
+</ul>
+</li>
+<li>通过this 可以在方法中引用调用方法的对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function fn() &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn() // == window.fn()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>###<strong>箭头函数中的this</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function fn() &#123;</span><br><span class="line">&#125;</span><br><span class="line">const  fn2 = () =&gt; &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const obj = &#123;</span><br><span class="line">    name:&quot;...&quot;,</span><br><span class="line">    fn,</span><br><span class="line">    fn2,</span><br><span class="line">    sayHellow()&#123;</span><br><span class="line">        console.log(this.name)</span><br><span class="line">        function t()&#123;</span><br><span class="line">            console.log(&quot;t--&gt;&quot;,this)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        t() // window</span><br><span class="line">        </span><br><span class="line">        connst t2 = () =&gt; &#123;</span><br><span class="line">            console.log(&quot;t2--&gt;&quot;,this)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        t2() // obj</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn() //window</span><br><span class="line">fn2() //window</span><br><span class="line">obj.fn() //obj</span><br><span class="line">obj.fn2() //window</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>箭头函数没有自己的this，它的this 由外层作用域决定<br>箭头函数的this 与它的调用方式无关</p>
+<p>##<strong>面向对象</strong></p>
+<ul>
+<li><p>面向对象变成(OOP)</p>
+<ul>
+<li>程序是干嘛的？<ul>
+<li>程序就是对现实世界的抽象（照片就是对人的抽象）</li>
+</ul>
+</li>
+<li>对象是干嘛的？<ul>
+<li>一个事物抽象到程序中后就变成了对象</li>
+<li>在程序的世界中，一切皆对象</li>
+</ul>
+</li>
+<li>面向对象的编程<ul>
+<li>面向对象的编程指，程序中的所有操作都是通过对象来完成的</li>
+<li>做任何事情之前都需要先找到它的对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>一个事物通常由两部分组成：数据和功能</p>
+</li>
+<li><p>一个对象由两个部分组成：属性和方法</p>
+</li>
+<li><p>事物的数据到了对象中，体现为属性</p>
+</li>
+<li><p>事物的功能到了对象中，体现为方法</p>
+</li>
+</ul>
+<p>###<strong>类的简介</strong></p>
+<ul>
+<li>使用Object 创建对象的问题<ul>
+<li>无法区分出不同类型的对象</li>
+<li>不方便批量创建对象</li>
+</ul>
+</li>
+<li>在JS 中可以通过类（Class）来解决这个问题：<ul>
+<li>类时对象模板，可以将对象中的属性和方法直接定义在类中。定义后，就可以直接通过类来创建对象。</li>
+<li>通过同一个类创建的对象，我们称为同类对象。可以使用instanceOf 来检查一个对象是否由某个类创建。如果某个对象是由某个类所创建，则我们称该对象是这个类的实例。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class 类名 &#123;&#125; // 类名用大驼峰命名</span><br><span class="line">const 类名 = calss &#123;&#125;</span><br><span class="line"></span><br><span class="line">obj instanceOf clsName</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>通过类来创建对象<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const person = new Person() //调用构造函数创建对象</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>###<strong>属性</strong><br>类是创建对象的模板，要创建第一件事就是定义类<br>####<strong>添加属性</strong></p>
+<ul>
+<li><font color='red'>类的代码块，默认为严格模式</font><ul>
+<li>类的代码块是用来设置对象的属性的，，不是什么代码都能写</li>
+</ul>
+</li>
+<li>静态属性只能通过类访问 Person.test</li>
+<li>原始添加<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.name = &#x27;&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    (&quot;use strict&quot;)</span><br><span class="line">    name = &quot;...&quot;, // Person 的实例属性name</span><br><span class="line">    age = 18,     //实例属性只能通过实例访问</span><br><span class="line">    static test = &quot;test静态属性&quot; // 使用static 声明的属性，是静态属性（类属性）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>方法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    (&quot;use strict&quot;)</span><br><span class="line">    name = &quot;...&quot;, // Person 的实例属性name</span><br><span class="line">    age = 18,     //实例属性只能通过实例访问</span><br><span class="line">    static test = &quot;test静态属性&quot;, // 使用static 声明的属性，是静态属性（类属性）</span><br><span class="line">    sayHe = function () &#123;</span><br><span class="line">    &#125;， // 添加方法的一种方式</span><br><span class="line">    sayHellow () &#123;</span><br><span class="line">    &#125;， // 添加方法（实例方法） 实例方法中this 就是当前实例</span><br><span class="line">    static sayHell () &#123;</span><br><span class="line">    &#125; // 添加静态方法 静态方法只能通过类访问 Person.sayHell 静态方法中this 指向当前类</span><br><span class="line">&#125;</span><br><span class="line">const p1 = new Person()</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>构造函数</strong></p>
+<ul>
+<li>当我们直接在类中直接指定实例属性的值时，意味着我们创建的所有对象的属性都是这个值</li>
+<li>在类中可以添加一个特殊的方法constructor</li>
+<li>该方法我们成为构造函数（构造方法）</li>
+<li>构造函数会在我们调用类创建对象时执行<ul>
+<li>可以在构造函数中，为实例属性进行赋值</li>
+<li>在构造函数中，this 表示当前所创建的对象</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    name,</span><br><span class="line">    age,</span><br><span class="line">    gender,</span><br><span class="line">    constructor(name, age, gender)&#123;</span><br><span class="line">        this.name = name,</span><br><span class="line">        this.age = age,</span><br><span class="line">        this.gender = gender,</span><br><span class="line">    &#125;,</span><br><span class="line">    sayHellow()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const p1 = Person(&#x27;...&#x27;, 18, &#x27;,&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>封装</strong></p>
+<ul>
+<li>面向对象的特点:<ul>
+<li>封装、继承和多态</li>
+<li>封装 —— 安全性</li>
+<li>继承 —— 扩展性</li>
+<li>多态 —— 灵活性</li>
+</ul>
+</li>
+<li>封装<ul>
+<li>对象就是一个永泰存储不同属性的容器</li>
+<li>对象不仅存储属性，还要负责数据的安全</li>
+<li>直接添加到对象中的属性，并不安全，因为它们可以被任意的修改</li>
+<li>如何确保数据的安全：<ul>
+<li>私有化数据<ul>
+<li>将需要保护的数据设置为私有，只能在类内部使用</li>
+<li>需要先声明才能访问</li>
+</ul>
+</li>
+<li>提供setter 和getter 方法来开放对数据的操作<ul>
+<li>属性设置私有，通过getter setter方法操作属性带来的好处<ul>
+<li>可以控制属性的读写权限</li>
+<li>可以在方法中对属性的值进行验证</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>封装主要用来保证数据的安全</li>
+<li>实现封装的方式：<ul>
+<li>属性私有化 加#</li>
+<li>通过getter 和setter 方法来操作属性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    #address = &quot;...&quot;, //实例使用# 开头就变成了私有属性，私有属性只能在类的内部访问</span><br><span class="line">    #name</span><br><span class="line">    #age</span><br><span class="line">    #gender</span><br><span class="line">    constructor(name, age, gender)&#123;</span><br><span class="line">        this.name = name,</span><br><span class="line">        this.age = age,</span><br><span class="line">        this.gender = gender,</span><br><span class="line">    &#125;,</span><br><span class="line">    sayHellow()&#123;</span><br><span class="line">        console.log(this.#address)</span><br><span class="line">    &#125;,</span><br><span class="line">    setAddress(address)&#123;</span><br><span class="line">        if()&#123;</span><br><span class="line">            this.#address = address</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    getAddress()&#123;</span><br><span class="line">        return this.#address</span><br><span class="line">    &#125;,</span><br><span class="line">    get gender()&#123;</span><br><span class="line">        return this.#gender</span><br><span class="line">    &#125;，</span><br><span class="line">    set gender(gender)&#123;</span><br><span class="line">        this.#gender = gender</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const p1 = Person(&#x27;...&#x27;, 18, &#x27;,&#x27;)</span><br><span class="line">p1.setAddress(&#x27;...&#x27;)</span><br><span class="line">p1.gender = &#x27;.&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>多态</strong></p>
+<ul>
+<li>在JS 中不会检查参数的类型，所以这就意味着任何数据都可以作为参数传递</li>
+<li>要调用某个函数，无需指定的类型，只要对象满足某些条件即可</li>
+<li>多态为我们提供了灵活性</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    constructor(name)&#123;</span><br><span class="line">        this.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Dog&#123;</span><br><span class="line">    constructor(name)&#123;</span><br><span class="line">        this.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const d = new Dog(&#x27;..&#x27;)</span><br><span class="line">const p = new Person(&#x27;...&#x27;)</span><br><span class="line"></span><br><span class="line">//定义一个函数，这个函数将接收一个对象作为参数，它可以输出hello 本打印对象的name 属性</span><br><span class="line">function sayHello(obj)&#123;</span><br><span class="line">    console.log(&#x27;Hello,&#x27;,this.name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>继承</strong></p>
+<ul>
+<li>可以通过extends 关键字来完成继承</li>
+<li>当一个类继承另一个类时，就相当于将另一个类中的代码赋值到了当前类中（简单理解）</li>
+<li>继承发生时，被继承的类称为 父类（超类），继承的类称为 子类</li>
+<li>通过继承可以减少重复的代码，并且可以在不修改一个类的前提对其进行扩展</li>
+<li>通过继承可以在不修改一个类的情况下对其进行扩展</li>
+<li>OCP 开闭原则<ul>
+<li>程序应该对修改关闭，对扩展开放</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Animal&#123;</span><br><span class="line">    constructor(name)&#123;</span><br><span class="line">        this.name = name</span><br><span class="line">    &#125;,</span><br><span class="line">    sayHellow()&#123;</span><br><span class="line">        consoloe.log(&#x27;...&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Dog extends Animal&#123;</span><br><span class="line">    // 在子类中，可以通过创建同名方法来重写父类的方法</span><br><span class="line">    sayHellow()&#123;</span><br><span class="line">        consoloe.log(&#x27;..&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Cat extends Animal&#123;</span><br><span class="line">    // 重写构造函数</span><br><span class="line">    constructor(name, age)&#123;</span><br><span class="line">        // 重写构造函数时，构造函数的第一行代码必须为super()</span><br><span class="line">        super(name) // 调用父类的构造函数</span><br><span class="line">        this.age = age</span><br><span class="line">    &#125;,</span><br><span class="line">    sayHellow()&#123;</span><br><span class="line">        super.sayHellow() // 在方法中可以用super. 来引用父类的方法</span><br><span class="line">        consoloe.log(&#x27;..&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const dog = new Dog(&#x27;..&#x27;)</span><br><span class="line">const cat = new Cat(&#x27;...&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>对象的结构</strong></p>
+<ul>
+<li>对象中存储属性的区域实际有两个：<ul>
+<li>对象自身<ul>
+<li>比如直接通过对象所添加的属性，位于对象自身中</li>
+<li>在类中通过 x &#x3D; y 的形式添加的属性，位于对象自身中</li>
+</ul>
+</li>
+<li>原型对象（prototype）<ul>
+<li>对象中还要一些内容，会存储到其它的对象里（原型对象）</li>
+<li>在对象中会有一个属性用来存储原型对象，这个属性叫做<code>__proto__</code></li>
+<li>原型对象也负责为对象存储属性<ul>
+<li>当我们访问对象中的属性时，会优先访问对象自身的属性</li>
+<li>对象自身不包含该属性时，才会取原型对象中寻找</li>
+</ul>
+</li>
+<li>会添加到原型对象中的情况：<ul>
+<li>在类中通过xxx(){} 方式添加的方法，位于原型中</li>
+<li>主动像原型中添加的属性或方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    name = &#x27;...&#x27;</span><br><span class="line">    age = 18</span><br><span class="line">    constructor ()&#123;</span><br><span class="line">        this.gender = &#x27;&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    sayHellow()&#123;</span><br><span class="line">        console.log(&#x27;Hello, 我是&#x27;, this.name)</span><br><span class="line">    &#123;</span><br><span class="line">&#125;</span><br><span class="line">const p = new Person()</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>原型对象</strong></p>
+<ul>
+<li>访问一个对象的原型对象<ul>
+<li><code>对象.__proto__</code></li>
+<li><code>Object.getPrototypeOf(对象)</code></li>
+</ul>
+</li>
+<li>原型对象中的数据：<ul>
+<li>对象中的数据（属性、方法）</li>
+<li>constructor （对象的构造函数）</li>
+</ul>
+</li>
+<li>注意：<ul>
+<li>原型对象也有原型，这样就构成以了一条原型链，根据对象的复杂程度不同，原型链的长度也不同<ul>
+<li>p 对象的原型链：p -&gt; 原型 -&gt; 原型 -&gt; null</li>
+<li>obj 对象的原型链：obj -&gt; 原型 -&gt; null</li>
+</ul>
+</li>
+<li>原型链：<ul>
+<li>读取对象属性时，会优先对象自身属性<ul>
+<li>如果对象中有，则使用，没有则取对象的原型中寻找</li>
+<li>如果原型中有，则使用，没有则取对象的原型中寻找</li>
+<li>直到找到Object 对象的原型（Object 的原型没有原型（为null））<ul>
+<li>如果依然没有找到，则返回undefined</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>作用域链，是找变量的链，找不到会报错</li>
+<li>原型链，是找属性的链，找不到会返回undefined</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    name = &#x27;...&#x27;</span><br><span class="line">    age = 18</span><br><span class="line">    constructor ()&#123;</span><br><span class="line">        this.gender = &#x27;&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    sayHello()&#123;</span><br><span class="line">        console.log(&#x27;Hello, 我是&#x27;, this.name)</span><br><span class="line">    &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const p = new Person()</span><br><span class="line"></span><br><span class="line">const obj = &#123;&#125;</span><br><span class="line"></span><br><span class="line">console.log(p.__proto__) // constructor sayHello</span><br><span class="line">===</span><br><span class="line">Object.getPrototypeOf(p) // 检查对象的原型</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>###<strong>原型的作用</strong></p>
+<ul>
+<li>所以的同类型对象它们的原型对象都是同一个，也就意味着同类型对象的原型链是一样的</li>
+<li>原型的作用：<ul>
+<li>原型就相当于是一个公共的区域，可以被所有该类实例访问呢<ul>
+<li>可以将一个该实例中，所有的公共属性（方法）统一存储到原型中</li>
+<li>这样我们只需要创建一个属性，即可被所有实例访问</li>
+</ul>
+</li>
+<li>JS 中继承就是通过原型来实现的<ul>
+<li>当继承时，子类的原型就是一个父类的实例</li>
+</ul>
+</li>
+<li>在对象中有些值是对象独有的，像属性（name, age, gender）每个对象都应该有自己值，但是有些值对于每个对象来说都是一样的，像各种方法，对于一样的值没必要重复的创建</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    name = &#x27;...&#x27;</span><br><span class="line">    age = 18</span><br><span class="line">    constructor ()&#123;</span><br><span class="line">        this.gender = &#x27;&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    sayHello()&#123;</span><br><span class="line">        console.log(&#x27;Hello, 我是&#x27;, this.name)</span><br><span class="line">    &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const p = new Person()</span><br><span class="line"></span><br><span class="line">class Animal&#123;</span><br><span class="line">&#125;</span><br><span class="line">class Cat extends Animal&#123;</span><br><span class="line">&#125;</span><br><span class="line">const cat = new Cat()</span><br><span class="line">// cat -&gt; Animal -&gt; object -&gt; Object 原型 -&gt; null</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>修改原型</strong></p>
+<ul>
+<li>大部分情况下，我们不需要修改原型对象<ul>
+<li>注意：<ul>
+<li>千万不要通过类的实例去修改原型<ul>
+<li>通过一个对象影响所有同类对象，这么做不合适</li>
+<li>修改原型先得创建实例，麻烦</li>
+<li>危险</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>除了通过<code>__proto__</code> 能访问对象的原型外，还可以通过类的.prototype 属性，来访问实例的原型。修改原型时，最好通过类去修改。<ul>
+<li>好处：<ul>
+<li>一修改就是修改所有实例的原型</li>
+<li>无需创建实例即可完成对类的修改</li>
+</ul>
+</li>
+<li>原则：<ul>
+<li>原型尽量不要手动改</li>
+<li>要改也不要通过实例对象去改</li>
+<li>通过类.prototype 属性去修改</li>
+<li>最好不要直接给.prototype 去赋值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    name = &#x27;...&#x27;</span><br><span class="line">    age = 18</span><br><span class="line">    constructor ()&#123;</span><br><span class="line">        this.gender = &#x27;&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    sayHello()&#123;</span><br><span class="line">        console.log(&#x27;Hello, 我是&#x27;, this.name)</span><br><span class="line">    &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const p = new Person()</span><br><span class="line">const p2 = new Person()</span><br><span class="line"></span><br><span class="line">// 通过对象修改原型，向原型中添加方法，修改后所有同类实例都能访问该方法</span><br><span class="line">p.__proto__.run = () =&gt; &#123;</span><br><span class="line">    console.log(&#x27;I&#x27;m running&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">p.run()</span><br><span class="line">p2.run()</span><br><span class="line"></span><br><span class="line">Person.prototype // 访问Person 类的原型对象</span><br><span class="line">Person.prototype.fly = () =&gt; &#123;</span><br><span class="line">    console.log(&#x27;...&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>instanceof 和hasOwn</strong></p>
+<ul>
+<li>instanceof用来检查一个对象是否是一个类的实例<ul>
+<li>检查的是对象的原型链上是否有该实例，只要原型链上有该类实例，就会返回true</li>
+<li></li>
+</ul>
+</li>
+<li>in<ul>
+<li>使用in 运算符检查属性时，无论属性在对象自身还是在原型中，都会返回true</li>
+</ul>
+</li>
+<li>对象.hasOwnProperty(“属性名”)（不推荐使用）<ul>
+<li>用来检查一个对象的自身是否含有某个属性</li>
+</ul>
+</li>
+<li>Object.hasOwn(对象, “属性名”)<ul>
+<li>用来检查一个对象的自身是否含有某个属性<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Animal&#123;&#125;</span><br><span class="line">class Dog extends Animal&#123;&#125;</span><br><span class="line">const dog = new Dog()</span><br><span class="line">dog -&gt; Animal 的实例 -&gt; Object 实例 -&gt; Pbject 原型</span><br><span class="line">dog instanceof Dog // 检查dog 是否为Dog 的实例 true</span><br><span class="line">dog instanceof Animal // 检查dog 是否为Animal 的实例 true</span><br><span class="line">dog instanceof Object // true</span><br><span class="line"></span><br><span class="line">const obj = new Object()</span><br><span class="line"></span><br><span class="line">class Person&#123;</span><br><span class="line">    name = &#x27;...&#x27;</span><br><span class="line">    age = 18</span><br><span class="line">    constructor ()&#123;</span><br><span class="line">        this.gender = &#x27;&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    sayHello()&#123;</span><br><span class="line">        console.log(&#x27;Hello, 我是&#x27;, this.name)</span><br><span class="line">    &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(&quot;name&quot; in p) // 用来检查p 中是否有name 属性</span><br><span class="line">p.hasOwnProperty(&quot;name&quot;)</span><br><span class="line"></span><br><span class="line">Object.hasOwn(p, &quot;name&quot;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>###<strong>旧类</strong></p>
+<ul>
+<li>早期JS 中，直接通过函数来定义类<ul>
+<li>一个函数如果直接调用 xxx() 那么这个函数就是一个普通函数</li>
+<li>一个函数如果通过new 调用 new xxx() 那么这个函数就是一个构造函数</li>
+</ul>
+</li>
+<li>等价于<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age)&#123;</span><br><span class="line">    // 在构造函数中，this 表示新建的对象</span><br><span class="line">    this.name = name</span><br><span class="line">    this.age = age</span><br><span class="line">    //this.sayHellow = function()&#123;</span><br><span class="line">    //    console.log(&quot;hellow&quot;)</span><br><span class="line">    //&#125; // 不建议这么写</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 向原型中添加属性/方法</span><br><span class="line">Person.prototype.sayHellow = function()&#123;</span><br><span class="line">    console.log(&quot;hellow&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 静态属性</span><br><span class="line">Person.staticProperty = &quot;xxx&quot;</span><br><span class="line">// 静态方法</span><br><span class="line">Person.staticMethod = function()&#123;&#125;</span><br><span class="line">const p = new Person()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var Person = (function()&#123; // 立即执行函数</span><br><span class="line">    function Person(name, age)&#123;</span><br><span class="line">        // 在构造函数中，this 表示新建的对象</span><br><span class="line">        this.name = name</span><br><span class="line">        this.age = age</span><br><span class="line">        //this.sayHellow = function()&#123;</span><br><span class="line">        //    console.log(&quot;hellow&quot;)</span><br><span class="line">        //&#125; // 不建议这么写</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 向原型中添加属性/方法</span><br><span class="line">    Person.prototype.sayHellow = function()&#123;</span><br><span class="line">        console.log(&quot;hellow&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 静态属性</span><br><span class="line">    Person.staticProperty = &quot;xxx&quot;</span><br><span class="line">    // 静态方法</span><br><span class="line">    Person.staticMethod = function()&#123;&#125;</span><br><span class="line">    return Person</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var Animal = (function()&#123;</span><br><span class="line">    function Animal()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    return Animal</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var Cat = (function()&#123;</span><br><span class="line">    function Cat()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    // 继承Animal</span><br><span class="line">    Cat.prototype = new Animal()</span><br><span class="line">    </span><br><span class="line">    return Cat</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>new 运算符</strong></p>
+<ul>
+<li>new 运算符时创建对象时要使用的运算符<ul>
+<li>使用new 时，到底发生了哪些事情</li>
+<li>当使用new 去调用一个函数时，这个函数将会作为构造函数调用，使用new 调用函数时，将会发生这些事：<ul>
+<li>创建一个普通的JS 对象（Object 对象{}），额外i了方便，称其为新对象</li>
+<li>将构造函数的prototype 属性设置为新对象的原型</li>
+<li>使用实参来执行构造函数，并且将新对象设置为函数中的this</li>
+<li>如果构造函数返回的是一个非原始值，则该值会作为new 运算的返回值返回。如果构造函数的返回值是一个原始值或者没有指定返回值，则新的对象将会作为返回值返回</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function MyClass()&#123;</span><br><span class="line">    var newInstance = &#123;&#125;</span><br><span class="line">    newInstance.__proto__ = MyClass.prototype</span><br><span class="line">    return &#123;name:&quot;...&quot;&#125;</span><br><span class="line">&#125;</span><br><span class="line">new MyClass()</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>总结</strong></p>
+<ul>
+<li>面向对象本质就是，编写代码时所有的操作都是通过对象来进行的。<ul>
+<li>面向对象的编程的步骤<ul>
+<li>找对象</li>
+<li>搞对象</li>
+</ul>
+</li>
+<li>学习对象：<ul>
+<li>明确这个对象代表什么，有什么用</li>
+<li>如何获取到这个对象</li>
+<li>如何使用这个对象（对象中的属性和方法）</li>
+</ul>
+</li>
+<li>对象的分类：<ul>
+<li>内建对象<ul>
+<li>由ES 标准所定义的对象</li>
+<li>比如 Object Function String Number …</li>
+</ul>
+</li>
+<li>宿主对象<ul>
+<li>由浏览器提供的对象</li>
+<li>BOM、DOM</li>
+</ul>
+</li>
+<li>自定义对象<ul>
+<li>由开发人员自己创建的对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>##<strong>数组（Array）</strong></p>
+<ul>
+<li>数组也是一种符合数据类型，在数组中可以存储多个不同类型的数据</li>
+<li>数组中存储的时有序的数据，数组中的每个数据都有一个位移的索引，可以通过索引来操作获取数据</li>
+<li>数组中存储的数据叫做元素</li>
+<li>索引（index）是一组大于0 的整数</li>
+<li>创建数组<ul>
+<li>通过Array() 来创建数组，也可以通过 [] 来创建数组</li>
+</ul>
+</li>
+<li>向数组中添加元素<ul>
+<li>语法：<ul>
+<li>数组[索引] &#x3D; 元素</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>读取数组中的元素<ul>
+<li>语法：<ul>
+<li>数组[索引]</li>
+<li>如果读取了一个不存在的元素，不好报错二十返回undefined</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>length<ul>
+<li>获取数组的长度</li>
+<li>获取的实际值就是数组的最大索引 + 1</li>
+<li>arr.length 可以修改长度，长null，短删除</li>
+</ul>
+</li>
+<li>使用数组时，应该避免非连续数组，因为它性能不好</li>
+<li>任何类型的值都可以称为数组中的元素</li>
+<li>创建数组时尽量要确保数组中存储的数据类型相同</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = new Array()</span><br><span class="line">const arr2 = []</span><br></pre></td></tr></table></figure>
+<p>###<strong>数组的遍历</strong></p>
+<ul>
+<li>遍历数组简单理解，就是获取到数组中的每一个元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">let arr = []</span><br><span class="line">for(let i=0;i&lt;arr.length;i++)</span><br><span class="line"></span><br><span class="line">for(let a in arr)</span><br><span class="line"></span><br><span class="line">class Person&#123;</span><br><span class="line">    constructor(name, age)&#123;</span><br><span class="line">        this.name = name</span><br><span class="line">        this.age = age</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const personArr = &#123;</span><br><span class="line">    new Person(&#x27;...&#x27;,18),</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for(let i=0;i&lt;personArr.length;i++)&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>for-of 语句</strong></p>
+<ul>
+<li>for-of 语句可以用来遍历可迭代对象</li>
+<li>语法：<ul>
+<li>for(变量 of 可迭代对象){}</li>
+</ul>
+</li>
+<li>执行流程：<ul>
+<li>for-of循环体会执行多次，数组中有几个元素就会执行几次。每次执行时都会将一个元素赋值给变量</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const arr = []</span><br><span class="line">for(let value of arr)&#123;&#125;</span><br><span class="line">for(let value of &#x27;string&#x27;)&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>数组方法介绍</strong></p>
+<ul>
+<li>Array.isArray()<ul>
+<li>用来检查一个对象是否是数组</li>
+</ul>
+</li>
+<li>at()<ul>
+<li>可以根据索引获取数组中的指定元素</li>
+<li>at 可以接收负索引作为参数（即倒数）与 arr.[arr.length - n] 等价</li>
+</ul>
+</li>
+<li>concat()<ul>
+<li>用来链接两个或多个数组</li>
+<li>非破坏性方法，不会影响原数组，二十返回一个新的数组</li>
+</ul>
+</li>
+<li>indexOf()<ul>
+<li>获取元素在数组中第一次出现的索引 arr.indexOf(‘…’)</li>
+<li>参数：<ul>
+<li>要查询的元素</li>
+<li>查询的起始位置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>lastIndexOf()<ul>
+<li>获取元素在数组中最后一次出现的位置</li>
+<li>返回值：<ul>
+<li>找到了则返回元素的索引</li>
+<li>没有找到返回-1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>join()<ul>
+<li>将一个数组中的元素链接为一个字符串</li>
+<li>参数：<ul>
+<li>指定一个字符串作为连接符 arr.join(‘.’)</li>
+<li>默认逗号连接</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>slice()<ul>
+<li>用来截取数组（非破坏性方法）</li>
+<li>参数<ul>
+<li>截取的起始位置（包括该位置）</li>
+<li>截取的结束位置（不包括该位置）<ul>
+<li>第二个参数可以省略不屑，如果省略则会一直截取到最后</li>
+<li>索引可以是负值</li>
+</ul>
+</li>
+<li>如果将两个参数全都省略，则可以对数组进行浅拷贝（浅复制）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>————</li>
+<li>push()<ul>
+<li>向数组的末尾添加一个或多个元素，并返回新的长度</li>
+</ul>
+</li>
+<li>pop()<ul>
+<li>删除并返回数组的最后一个元素</li>
+</ul>
+</li>
+<li>unshift()<ul>
+<li>向数组的开头添加一个或多个元素，并返回新的长度</li>
+</ul>
+</li>
+<li>shift()<ul>
+<li>删除并返回数组的第一个元素</li>
+</ul>
+</li>
+<li>splice()<ul>
+<li>可以删除、插入、替换数组中的元素</li>
+<li>参数：<ul>
+<li>删除的起始位置</li>
+<li>删除的数量</li>
+<li>要插入的元素</li>
+</ul>
+</li>
+<li>返回值：<ul>
+<li>返回被删除的元素</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>reverse()<ul>
+<li>反转数组</li>
+</ul>
+</li>
+<li>———— </li>
+<li>sort()<ul>
+<li>sort 用来对数组进行排序（会改变原数组）（破坏性）</li>
+<li>sort 默认会将数组升序排列<ul>
+<li>注意：sort 默认会按照Unicode 编码进行排序，所以如果直接通过sort 对数字进行排序，可能会得到一个不正确的结果</li>
+</ul>
+</li>
+<li>参数：<ul>
+<li>可以传递一个回调函数作为参数，通过回调函数来指定排序规则<ul>
+<li>(a, b) &#x3D;&gt; a - b 升序</li>
+<li>(a, b) &#x3D;&gt; b - a 降序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>forEach()<ul>
+<li>用来遍历数组</li>
+<li>它需要一个回调函数作为参数，这个回调函数会被调用多次。<ul>
+<li>数组中有几个元素，回调函数就会调用几次。</li>
+<li>每次调用，都会将数组中的数据作为参数传递</li>
+</ul>
+</li>
+<li>回调函数中有三个参数：<ul>
+<li>element 当前元素</li>
+<li>index 当前元素的索引</li>
+<li>array 被遍历的数组</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>filter()<ul>
+<li>将数组中符合条件的元素保存到一个新数组中返回</li>
+<li>需要一个回调函数作为参数，会为每一个元素去调用回调函数，并根据返回值来决定是否将元素添加到新数组中</li>
+<li>非破坏性方法，不会影响原数组</li>
+</ul>
+</li>
+<li>map()<ul>
+<li>根据当前数组生成一个新数组</li>
+<li>需要一个回调函数作为参数，回调函数的返回值会成为新数组中的元素</li>
+<li>非破坏性方法不会影响原数组</li>
+</ul>
+</li>
+<li>reduce()<ul>
+<li>可以用来将一个数组中的所有元素整合为一个值</li>
+<li>参数：<ul>
+<li>回调函数，通过回调函数来指定合并的规则</li>
+<li>可选参数，初始值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const arr = []</span><br><span class="line">arr.at(0)</span><br><span class="line">const result = arr.concat(arr2,...)</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>对象的复制</strong></p>
+<ul>
+<li>如何去复制一个对象 复制必须要产生新的对象</li>
+<li>当调用slice 时，会产生一个新的对象，从而完成对数组的复制</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const arr2 = arr.slice()</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>浅拷贝和深拷贝</strong></p>
+<ul>
+<li>浅拷贝（shallow copy）<ul>
+<li>通常对对象的拷贝都是浅拷贝</li>
+<li>浅拷贝顾名思义，只对对象的浅层进行复制（只复制一层）</li>
+<li>如果对象中存储的数据时原始值，那么拷贝的深浅时不重要的</li>
+<li>浅拷贝只会对对象本身进行复制，不会复制对象中的属性（或元素）</li>
+</ul>
+</li>
+<li>深拷贝（deep copy）<ul>
+<li>深拷贝指不仅复制对象本身，还复制对象中的属性和元素</li>
+<li>因为性能问题，通常情况不太使用深拷贝</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个对象</span><br><span class="line">const arr = []</span><br><span class="line">const arr2 = arr.slice() // 浅拷贝</span><br><span class="line"></span><br><span class="line">const arr3 = structureClone(arr) // 专门用来深拷贝</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>复制的方法</strong></p>
+<ul>
+<li>…(展开运算符)<ul>
+<li>可以将一个数组中的元素展开到另一个数组中或作为函数的参数传递</li>
+<li>通过它也可以对数组进行浅复制</li>
+</ul>
+</li>
+<li>对象的复制<ul>
+<li>Object.assign(目标对象, 被复制的对象)</li>
+<li>将被复制对象中的属性复制到目标对象里，并将目标对象返回</li>
+</ul>
+</li>
+<li>也可以使用展开运算符对对象进行复制</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const arr3 = [...arr]</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>数组去重</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">for(let i=0; i&lt;arr.length; i++)&#123;</span><br><span class="line">    const index = arr.indexOf(arr[i], i+1)</span><br><span class="line">    if (index !== -1)&#123;</span><br><span class="line">        arr.splice(index, 1)</span><br><span class="line">        i--</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for(let ele of arr)&#123;</span><br><span class="line">    if(newArr.indexOf(ele) === -1)&#123;</span><br><span class="line">        newArr.push(ele)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>高阶函数</strong></p>
+<ul>
+<li>一个函数的参数也可以是函数</li>
+<li>如果一个函数的参数或返回值是函数，则这个函数就是告诫函数</li>
+<li>为什么要将函数作为参数传递？（回调函数有什么作用？）<ul>
+<li>将函数作为参数，意味着可以对另一个函数动态地传递代码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>###<strong>闭包简介</strong></p>
+<ul>
+<li>创建一个函数，第一次调用时打印1，第二次调用打印2，以此类推</li>
+<li>可以利用函数，来隐藏不希望被外部访问到的变量</li>
+<li>闭包：<ul>
+<li>闭包就是能访问到外部函数作用域中变量的函数</li>
+</ul>
+</li>
+<li>什么时候使用：<ul>
+<li>当我们需要隐藏一些不希望被别人访问的内容时就可以使用闭包</li>
+</ul>
+</li>
+<li>构成闭包的要件：<ul>
+<li>函数的嵌套</li>
+<li>内部函数要引用外部函数中的变量</li>
+<li>内部函数要作为返回值返回</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function outer()&#123;</span><br><span class="line">    let num = 0 // 位于函数作用域中</span><br><span class="line">    </span><br><span class="line">    return ()=&gt;&#123;</span><br><span class="line">        num++</span><br><span class="line">        console.log(num)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>闭包原理</strong></p>
+<ul>
+<li>函数在作用域，在函数创建时就已经确定的（词法作用域），和调用的位置无关</li>
+<li>闭包利用的就是 <strong>词法作用域</strong></li>
+</ul>
+<p>###<strong>闭包的注意事项</strong></p>
+<ul>
+<li>闭包的生命周期：<ul>
+<li>闭包在外部函数调用时产生，外部函数每次调用都会产生一个全新的闭包</li>
+<li>在内部函数丢失时销毁（内部函数被垃圾回收了，闭包才会消失）</li>
+</ul>
+</li>
+<li>注意事项：<ul>
+<li>闭包主要用来隐藏一些不希望被外部访问的内容，这就意味着闭包需要占用一定的内存空间</li>
+<li>相较于类来说，闭包比较浪费内存空间（类可以使用原型而闭包不能）<ul>
+<li>需要执行次数较少时，使用闭包</li>
+<li>需要大量创建实例时，使用类</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>可变参数</strong></p>
+<ul>
+<li>arguments<ul>
+<li>arguments 时函数中又一个隐含参数</li>
+<li>arguments 是一个类数组对象（伪数组）<ul>
+<li>和数组相似，可以通过索引来读取元素，也可以通过for 循环变量，但是它不是一个数组对象，不能调用数组的方法</li>
+</ul>
+</li>
+<li>arguments 用来存储函数的实参，无论用户是否定义形参，实参都会存储到arguments 对象中，可以通过该对象直接访问实参</li>
+</ul>
+</li>
+<li>可变参数，在定义函数时可以将参数指定为可变参数<ul>
+<li>可变参数可以接收任意数量实参，并将他统一存储到一个数组中返回</li>
+<li>可变参数的作用和arguments 基本时一致，但是也具有一些不同点<ul>
+<li>可变参数的名字可以自己指定</li>
+<li>可变参数就是一个数组，可以直接使用数组的方法</li>
+<li>可变参数可以配合其它参数一起使用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 当可变参数和普通参数一起使用时，需要将可变参数写到最后</span><br><span class="line">function fn(a, b, ...args)&#123;</span><br><span class="line">    console.log(args)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>call 和apply</strong></p>
+<ul>
+<li>根据函数调用方式的不同，this 的值也不同<ul>
+<li>以函数形式调用，this 是window</li>
+<li>以方法形式调用，this 是调用方法的对象</li>
+<li>构造函数中，this 是新建的对象</li>
+<li>箭头函数没有自己的this，由外层作用域决定</li>
+<li>通过call 和apply 调用的函数，它们的第一个参数就是函数的this</li>
+<li>通过bind 返回的函数，this 由bind 第一个参数决定（无法修改）</li>
+</ul>
+</li>
+<li>调用函数除了通过 函数() 这种形式外，还可以通过其它的方式来调用函数<ul>
+<li>比如，我们可以通过调用 函数.call() &#x2F; 函数.apply() 两个方法来调用函数<ul>
+<li>call 和apply 除了可以调用函数，还可以用来指定函数中的this</li>
+<li>call 和apply 的第一个参数，将会成为函数的this</li>
+<li>通过call 方法调用函数，函数的实参直接在第一个参数后一个一个地列出来</li>
+<li>通过apply 方法调用函数，函数的实参需要通过一个数组传递</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>bind</strong></p>
+<ul>
+<li>bind() 是函数的方法，可以用来创建一个新的函数<ul>
+<li>bind 可以为新函数绑定this</li>
+<li>bind 可以为新函数绑定参数</li>
+<li>通过bind 返回的函数，this 由bind 第一个参数决定（无法修改）</li>
+</ul>
+</li>
+<li>箭头函数没有自身的this，它的this 由外层作用域决定<ul>
+<li>无法通过call apply 和bind 修改它的this</li>
+<li>箭头函数中没有arguments</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const newFn = fn.bind(obj)</span><br></pre></td></tr></table></figure>
+
+<p>##<strong>内建对象</strong><br>###<strong>解构赋值</strong><br>####<strong>数组的解构</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const arr = [&#x27;...&#x27;, ...]</span><br><span class="line">let [a, ...] = arr // 解构赋值</span><br><span class="line"></span><br><span class="line">let [a, ...] = [&#x27;...&#x27;, ...] // 声明同时解构</span><br><span class="line"></span><br><span class="line">let [n1, n2, ...n3] = [1, 2, 3 ,4] // 解构数组时，可以使用... 来设置获取多余的元素</span><br><span class="line"></span><br><span class="line">// 可以通过解构赋值来快速交换两个变量的值</span><br><span class="line">[a1, a2] = [a2, a1]</span><br><span class="line"></span><br><span class="line">let arr3 = [[],[]]</span><br><span class="line">[[a, b, c],obj] = arr3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数组中可以存储任意类型的数据，也可以存数组，如果一个数组中的元素还是驻足，则这个数组我们就称为是二维数组</li>
+</ul>
+<p>####<strong>对象的解构</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;name: , age: , gender: &#125;</span><br><span class="line">let &#123;name, age, gender&#125; = obj</span><br><span class="line">let &#123;name:a, age:b, gender:c, address:d&#125; = obj</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>###<strong>对象的序列化</strong></p>
+<ul>
+<li>JS 中的对象使用时都是存在于计算机的内存中的</li>
+<li>序列化指将对象转换为一个可以存储的格式，在JS 中对象的序列化通常时将一个对象转换为字符串（JSON 字符串）</li>
+<li>序列化的用途（对象转换为字符串有什么用）：<ul>
+<li>对象转换为字符串后，可以将字符串在不同的语言之间进行传递，甚至人可以直接对字符串进行读写操作，使得JS 对象可以在不同的语言之间传递</li>
+<li>用途：<ul>
+<li>作为数据交换的格式</li>
+<li>用来编写配置文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如何进行序列化：<ul>
+<li>在JS 中有一个工具类 JSON (Javascript Object Notation) JS 对象表示法</li>
+<li>JS 对象序列化后会换一个字符串，这个字符串我们称其为JSON 字符串</li>
+</ul>
+</li>
+<li>也可以手动地编写JSON 字符串，很多程序的配置文件就是使用JSON 编写的</li>
+<li>编写JSON 的注意事项：<ul>
+<li>JSON 字符串有两种类型：<ul>
+<li>JSON 对象 {}</li>
+<li>JSON 数组 []</li>
+</ul>
+</li>
+<li>JSON 字符串的属性名必须用双引号括起来</li>
+<li>JSON 中可以使用的属性值（元素）<ul>
+<li>数字（Number）</li>
+<li>字符串（String）</li>
+<li>布尔值（Boolean）</li>
+<li>空值（Null）</li>
+<li>对象（Object {}）</li>
+<li>数组（Array []）</li>
+</ul>
+</li>
+<li>JSON 的格式和JS 对象的格式基本上是一致的<ul>
+<li>注意：JSON 字符串如果属性是最后一个，则不要再加逗号</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//将obj 转换为JSON 字符串</span><br><span class="line">const str = JSON.stringfy(obj)</span><br><span class="line"></span><br><span class="line">const str2 =JSON.parse(st</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>深复制</strong></p>
+<p>+ </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 对obj 进行浅复制</span><br><span class="line">const obj2 = Object.assigh(&#123;&#125;, obj)</span><br><span class="line"></span><br><span class="line">// 对obj 进行深复制</span><br><span class="line">const obj3 = structuredClone(obj)</span><br><span class="line"></span><br><span class="line">// 利用JSON 来完成深复制</span><br><span class="line">const str = JSON.stringfy(obj)</span><br><span class="line">const obj4 = JSON.parse(str)</span><br><span class="line"></span><br><span class="line">const obj5 = JSON.parse(JSON.stringfy(obj))</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>Map</strong></p>
+<ul>
+<li>Map 用来存储键值对结构的数据（key-value）</li>
+<li>Object 中存储的数据就可以认为是一种键值对结构</li>
+<li>Map 和Object 的主要区别<ul>
+<li>Object 中的属性名只能是字符串或符号，如果传递了一个其它类型的属性名，JS 解释器会自动将其转换为字符串</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">const map = new Map()</span><br><span class="line"></span><br><span class="line">map.set(&quot;name&quot;, &quot;...&quot;)</span><br><span class="line">map.set(obj2, &quot;..&quot;)</span><br><span class="line">map.set(NaN, &quot;.&quot;)</span><br><span class="line"></span><br><span class="line">map.get(key)</span><br><span class="line"></span><br><span class="line">map.size() // 获取map 中键值对的数量</span><br><span class="line">map.delete(key) // 删除</span><br><span class="line">map.has(key) // 检查map 中是否包含指定键</span><br><span class="line">map.clear() // 删除全部的键值对</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 将map 转换为数组</span><br><span class="line">const map = new Map()</span><br><span class="line">map.set(&quot;...&quot;, &quot;...&quot;)</span><br><span class="line">map.set(&quot;..&quot;, &quot;..&quot;)</span><br><span class="line"></span><br><span class="line">const arr = Array.from(map) // [[&quot;...&quot;, &quot;...&quot;], [&quot;..&quot;, &quot;..&quot;]]</span><br><span class="line">或</span><br><span class="line">const arr = [...map]</span><br><span class="line"></span><br><span class="line">// 遍历map</span><br><span class="line">for(const entry of map)&#123;</span><br><span class="line">    const [ke</span><br><span class="line">&#125;</span><br><span class="line">map.forEach((key,value,c)=&gt;&#123;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">map.keys() // 获取map 中所有的key</span><br><span class="line">map.values() // 获取map 中所有的value</span><br><span class="line">map.entries()</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>Set</strong></p>
+<ul>
+<li>Set 用来创建一个集合</li>
+<li>它的功能和数组类似，不同点在于Set 不能存储重复的数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const set = new Set()</span><br><span class="line">const set = new Set([...])</span><br><span class="line">const arr = [...set]</span><br><span class="line">set.size() // 获取数量</span><br><span class="line">set.add() // 添加元素</span><br><span class="line">set.has() // 检查元素</span><br><span class="line">set.delete() // 删除元素</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>Math</strong></p>
+<ul>
+<li>Math 是一个工具类</li>
+<li>Math 中为我们提供了数学运算相关的一些常量和方法</li>
+<li>常量：<ul>
+<li>Math.PI 圆周率</li>
+</ul>
+</li>
+<li>方法：<ul>
+<li>Math.abs() 求一个数的绝对值</li>
+<li>Math.min() 求多个值中的最小值</li>
+<li>Math.max() 求多个值中的最大值</li>
+<li>Math.pow() 求x 的y 次幂</li>
+<li>Math.pow() 求一个数的平方根</li>
+<li>取整<ul>
+<li>Math.floor() 向下取整</li>
+<li>Math.ceil() 向上取整</li>
+<li>Math.round() 四舍五入取</li>
+<li>Math.trunc() 直接去除小数位</li>
+</ul>
+</li>
+<li>Math.random() 返回一个0 到1 之间的伪随机数</li>
+</ul>
+</li>
+</ul>
+<p>###<strong>Date</strong></p>
+<ul>
+<li>再JS 中所有的和时间相关的数据都有Date 对象来表示</li>
+<li>对象的方法：<ul>
+<li>getFullYear() 获取4 位年份</li>
+<li>getMonth() 返回当前日期的月份（0-11）</li>
+<li>getDate() 返回当前是几日</li>
+<li>getDay() 返回当前日期是周几（0-6） 0 表示周日</li>
+<li>……</li>
+<li>getTime() 返回当前日期对象的时间戳<ul>
+<li>时间戳：自1907 年1 月1 日0 时0 分0 秒到当前时间所经历的毫秒数</li>
+<li>计算机底层存储时间时，使用都是时间戳</li>
+</ul>
+</li>
+<li>Date.now() 获取当前的时间</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let d = new Date() // 直接通过new Date() 船舰时间对象时，它创建的是当前的时间的对象</span><br><span class="line"></span><br><span class="line">// 可以再Date() 的构造函数中，传递一个表示时间的字符串</span><br><span class="line">// 字符串的格式：月/日/年 时：分：秒</span><br><span class="line">// 年-月-日T时：分：秒</span><br><span class="line">d = new Date(&quot;12/20/1998 12:22:33&quot;)</span><br><span class="line"></span><br><span class="line">// new Date(年， 月， 日， 时， 分， 秒)</span><br><span class="line">d = new Date(2016, 0, 1)</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>日期的格式化</strong></p>
+<ul>
+<li>toLocaleString()<ul>
+<li>可以将一个日期转换为本地时间格式的字符串</li>
+<li>参数：<ul>
+<li>描述语言和国家信息的字符串<ul>
+<li>zh-CN 中文中国</li>
+<li>zh-HK 中文香港</li>
+<li>en-US 英文美国</li>
+</ul>
+</li>
+<li>需要一个对象作为参数，再对象中可以通过对象的属性来对日期的格式进行配置<ul>
+<li>dateStyle 日期的风格</li>
+<li>timeStyle 时间的风格<ul>
+<li>full </li>
+<li>long </li>
+<li>medium </li>
+<li>short</li>
+</ul>
+</li>
+<li>hour12 是否采用12 小时制<ul>
+<li>true&#x2F;false</li>
+</ul>
+</li>
+<li>weekday 星期的显示方式<ul>
+<li>long</li>
+<li>short</li>
+<li>narrow</li>
+</ul>
+</li>
+<li>year</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const d = new Date()</span><br><span class="line">let result = d.toLocaleDateString() // 将日期转换为本地的字符串</span><br><span class="line">let result2 = d.toLocaleTimeString() // 将时间转换为本地的字符串</span><br><span class="line">let result3 = d.toLocaleString() // 将日期和时间都转换为本地的字符串</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>包装类</strong></p>
+<ul>
+<li>再JS 中，除了直接创建原始值外，也可以创建原始值的对象<ul>
+<li>通过 new String() 可以创建String 类型</li>
+<li>通过 new Number() 可以创建Number 类型</li>
+<li>通过 new Boolean() 可以创建Boolean 类型<ul>
+<li>但是千万不要这么做</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2023/09/14/GIT&&GitHub/"
+      title="GIT&GitHub"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        GIT&amp;GitHub
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/09/14/REST%20%E5%92%8C%20AJAX%20(%E5%8C%85%E5%90%AB%20Fetch%20%E5%92%8C%20Axios)/"
+      title="REST和AJAX（含Fetch和Axios）"
+     >
+
+    <p class="title-text">
+      
+        REST和AJAX（含Fetch和Axios）
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2023 Cksheuen<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>太菜所以学的TS二 | Cksheuen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="TS-Study标签（空格分隔）： 未分类  安装环境 1npm i typescript -g 编译 123(tsc --init)tsc -wnode index.js 基础类型定义类型1let name:type &#x3D; ... ###任何es 语法都通用###number  NaN 普通数字 Infinity——无穷大 6——十进制 0x…十六进制 0b…二进制 0o…八进制  ###stri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="太菜所以学的TS二">
+<meta property="og:url" content="http://cksheuen.com/2023/09/14/TS-Study/index.html">
+<meta property="og:site_name" content="Cksheuen&#39;s Blog">
+<meta property="og:description" content="TS-Study标签（空格分隔）： 未分类  安装环境 1npm i typescript -g 编译 123(tsc --init)tsc -wnode index.js 基础类型定义类型1let name:type &#x3D; ... ###任何es 语法都通用###number  NaN 普通数字 Infinity——无穷大 6——十进制 0x…十六进制 0b…二进制 0o…八进制  ###stri">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-14T05:24:11.957Z">
+<meta property="article:modified_time" content="2023-09-14T05:33:39.188Z">
+<meta property="article:author" content="Cksheuen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Cksheuen's Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Cksheuen's Blog </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Cksheuen </div>
+      <div class="dot"></div>
+      <div class="subtitle">This is the subtitle </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/Cksheuen" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2023/09 ">
+          September 2023 
+          <div class="archive-count">11 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/04 ">
+          April 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2023/09/14/--node.js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--/" title="学完之后一脸懵的Node.js" >
+            <div class="recent-link-text">
+              学完之后一脸懵的Node.js
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/GIT&&GitHub/" title="GIT&GitHub" >
+            <div class="recent-link-text">
+              GIT&amp;GitHub
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/JS%E2%80%94%E2%80%94%E8%AF%A5%E5%AD%A6%E7%9A%84%E9%80%83%E4%B8%8D%E6%8E%89/" title="发现太菜察觉漏学所以~被迫~自愿回来重学的JS" >
+            <div class="recent-link-text">
+              发现太菜察觉漏学所以~被迫~自愿回来重学的JS
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/REST%20%E5%92%8C%20AJAX%20(%E5%8C%85%E5%90%AB%20Fetch%20%E5%92%8C%20Axios)/" title="REST和AJAX（含Fetch和Axios）" >
+            <div class="recent-link-text">
+              REST和AJAX（含Fetch和Axios）
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/title-%20VUE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="VUE学习笔记（版本一）" >
+            <div class="recent-link-text">
+              VUE学习笔记（版本一）
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-TS-Study" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        太菜所以学的TS二
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-09-14T05:24:11.957Z" itemprop="datePublished">2023-09-14</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            4.2k words 
+          </div>
+        </div>
+        
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="TS-Study"><a href="#TS-Study" class="headerlink" title="TS-Study"></a>TS-Study</h1><p>标签（空格分隔）： 未分类</p>
+<hr>
+<p>安装环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i typescript -g</span><br></pre></td></tr></table></figure>
+<p>编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(tsc --init)</span><br><span class="line">tsc -w</span><br><span class="line">node index.js</span><br></pre></td></tr></table></figure>
+<h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a><strong>基础类型</strong></h2><h3 id="定义类型"><a href="#定义类型" class="headerlink" title="定义类型"></a><strong>定义类型</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let name:type = ...</span><br></pre></td></tr></table></figure>
+<p>###<strong>任何es 语法都通用</strong><br>###<strong>number</strong></p>
+<ul>
+<li>NaN</li>
+<li>普通数字</li>
+<li>Infinity——无穷大</li>
+<li>6——十进制</li>
+<li>0x…十六进制</li>
+<li>0b…二进制</li>
+<li>0o…八进制</li>
+</ul>
+<p>###<strong>string</strong><br>###<strong>boolean</strong><br>###<strong>null</strong><br>###<strong>undefined</strong><br>###<strong>void</strong></p>
+<ul>
+<li>null (严格模式不允许)</li>
+<li>关闭严格模式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tsc --init</span><br><span class="line">&quot;strict&quot;: false</span><br></pre></td></tr></table></figure></li>
+<li>undefined</li>
+<li><font color="red">一般给函数定义使用</font></li>
+</ul>
+<p>###<strong>null</strong><br>###<strong>undefined——（可与bull 穿插赋值）</strong><br>##<strong>任意类型</strong><br>###<strong>安装库</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm i xmzs -g</span><br><span class="line">mmp ls</span><br><span class="line">mmp use 使用源</span><br><span class="line">mmp -h 查看命令</span><br><span class="line">num i ts-node -g</span><br><span class="line">npm init -y 生成package.json</span><br><span class="line">npm i @types/node -D 安装声明文件</span><br><span class="line">ts-node index.js 直接运行文件</span><br></pre></td></tr></table></figure>
+<p>安装</p>
+<ul>
+<li>any 任意类型</li>
+<li>unknown 未知类型</li>
+<li>1.top type 顶级类型 any unknown</li>
+<li>2.Object</li>
+<li>3.Number String Boolean</li>
+<li>4.number string boolean</li>
+<li>5.1 ‘’ false</li>
+<li>6.never</li>
+<li>高级包含低级</li>
+<li>any 可赋值任意类型，也可给任意类型赋值</li>
+<li>unknown 可赋值任意类型，只可赋值给unknown 或 any</li>
+<li>unknown 类型没有办法读任何属性 方法也不可以调用</li>
+<li>unknown 比 any 更加安全</li>
+</ul>
+<p>##<strong>补充知识</strong><br>###<strong>Object</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a:Object = 123</span><br><span class="line">let a1:Object = &#x27;123&#x27;</span><br><span class="line">let a2:Object = []</span><br><span class="line">let a3:Object = &#123;&#125;</span><br><span class="line">let a4:Object = () =&gt; 123</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>object</strong><br><font color='red'>仅不支持原始类型</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let a:Object = 123/错误</span><br><span class="line">let a1:Object = &#x27;123&#x27;/错误</span><br><span class="line">let a2:Object = false/错误</span><br><span class="line">let a2:Object = []</span><br><span class="line">let a3:Object = &#123;&#125;</span><br><span class="line">let a4:Object = () =&gt; 123</span><br></pre></td></tr></table></figure>
+<p>###<strong>{}</strong><br><font color='red'>无法对变量进行赋值操作</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a:Object = 123</span><br><span class="line">let a1:Object = &#x27;123&#x27;</span><br><span class="line">let a2:Object = []</span><br><span class="line">let a3:Object = &#123;&#125;</span><br><span class="line">let a4:Object = () =&gt; 123</span><br></pre></td></tr></table></figure>
+<p>##<strong>接口和对象类型</strong><br>###<strong>对象的类型</strong></p>
+<ul>
+<li>interface 重名 重合</li>
+<li>interface 任意key</li>
+<li>interface ？ readonly</li>
+<li>interface 接口继承</li>
+<li>interface 定义函数类型</li>
+<li>不能多属性，也不能少属性<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">interface A... extends B&#123; //继承B</span><br><span class="line">    name:string</span><br><span class="line">    age:number</span><br><span class="line">    [propName:string]:any//索引签名定义属性</span><br><span class="line">    readonly(无法被赋值修改) cb:()=&gt;boolean</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface B &#123;</span><br><span class="line">    xxx:string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface A...&#123;</span><br><span class="line">    Ikun?:string//?——可选值</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let a:A... = &#123;</span><br><span class="line">    name:&quot;...&quot;,</span><br><span class="line">    age:12，</span><br><span class="line">    Ikun:&quot;....&quot;,</span><br><span class="line">    cb:()=&gt;&#123;</span><br><span class="line">        return false</span><br><span class="line">    &#125;,</span><br><span class="line">    xxx:&quot;...&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Fn &#123;</span><br><span class="line">    (name:string):number[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const fn:Fn = function (name:string) &#123;</span><br><span class="line">    return [1]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>##<strong>数组类型</strong><br>###<strong>定义方式</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">let arr:number[] =[1,2,3,4,5]</span><br><span class="line">let arr:Array&lt;boolean&gt; = [true,false]</span><br><span class="line"></span><br><span class="line">interface X &#123;</span><br><span class="line">    name:string</span><br><span class="line">    age?:string</span><br><span class="line">&#125;</span><br><span class="line">//定义对象数组使用interface</span><br><span class="line">let arr:X[] = []</span><br><span class="line"></span><br><span class="line">//二维数组</span><br><span class="line">let arr:number[][] = [[1],[2],[3]]</span><br><span class="line">let arr:Array&lt;Array&lt;number&gt;&gt; = [[1],[2],[3]]</span><br><span class="line">let arr:any[] = [1,&#x27;sad&#x27;,true,&#123;&#125;]</span><br><span class="line">let arr:any[nuumber,string,boolean,&#123;&#125;] = [1,&#x27;sad&#x27;,true,&#123;&#125;]</span><br><span class="line"></span><br><span class="line">function a(...args:any[]) &#123;</span><br><span class="line">    console.log(args)</span><br><span class="line">    let a:IArguments = arguments</span><br><span class="line">&#125;</span><br><span class="line">a(1,2,3)</span><br><span class="line">interface A &#123;</span><br><span class="line">    callee:Function</span><br><span class="line">    length:number</span><br><span class="line">    [index:number]:any</span><br><span class="line">&#125;//IArguments原理</span><br></pre></td></tr></table></figure>
+
+<p>##<strong>函数扩展</strong><br>###<strong>函数定义类型和返回值 | 箭头函数定义类型和返回值</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function add(a:number,b:number): number &#123;</span><br><span class="line">    return a+b</span><br><span class="line">&#125;</span><br><span class="line">const add = (a:number,b:number):number &#123;</span><br><span class="line">    return a+b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>函数默认的参数 | 函数可选参数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function add(a:number = 10,b?:number): number &#123;</span><br><span class="line">    return a+b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>参数是一个对象如何定义</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface User &#123;</span><br><span class="line">    name:string</span><br><span class="line">    age:number</span><br><span class="line">&#125;</span><br><span class="line">function add(user:User):User &#123;</span><br><span class="line">    return user</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>函数this 类型</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface Obj &#123;</span><br><span class="line">    user:number[]</span><br><span class="line">    add:()=&gt;void</span><br><span class="line">&#125;</span><br><span class="line">//ts 可以定义this 的类型 在js 中无法使用</span><br><span class="line">//必须是第一个参数定义this的类型</span><br><span class="line">let obj:Obj = &#123;</span><br><span class="line">    user:[1,2,3],</span><br><span class="line">    add(this:Obj,num:number) &#123;</span><br><span class="line">        this.user.push(num)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.add(4)</span><br></pre></td></tr></table></figure>
+<p>###<strong>函数重载</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">let user:number[] = [1,2,3]</span><br><span class="line">function findNum(add:number[]):number[]//如果传的是一个number 类型的数组那就做添加</span><br><span class="line">function findNum(id:number):number[] //如果传入了id 就是单个查询</span><br><span class="line">function findNum():number[]//如果没有传入东西就是查询全部</span><br><span class="line">function findNum(ids:number | number[]):number[]&#123;</span><br><span class="line">    if (typeof ids == &#x27;number&#x27;) &#123;</span><br><span class="line">        return user.fliter(v=&gt;v == ids)</span><br><span class="line">    &#125;</span><br><span class="line">    else if (Array.isArray(ids))&#123;</span><br><span class="line">        user.push(..ids)</span><br><span class="line">        return user</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return user</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">findOne 1</span><br><span class="line">find</span><br><span class="line">add</span><br></pre></td></tr></table></figure>
+
+<p>##<strong>类型断言 | 联合类型 | 交叉类型</strong><br>###<strong>联合类型</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let phone:number | string = &#x27;010-13121&#x27;/1241435</span><br><span class="line"></span><br><span class="line">let fn = function (type:number | boolean):boolean &#123;</span><br><span class="line">    return !!type</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>交叉类型</strong><br>interface People{<br>    name:string,<br>    age:number<br>}</p>
+<p>interface Man {<br>    sex:number<br>}</p>
+<p>const xiaoman &#x3D; (man:People &amp; Man):void &#x3D;&gt; {<br>    console.log(man)<br>}<br>###<strong>类型断言</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let fn = function (num:number | string):void &#123;</span><br><span class="line">    console.log((num as string).length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface A &#123;</span><br><span class="line">    run: string</span><br><span class="line">&#125;</span><br><span class="line">interface B &#123;</span><br><span class="line">    build: string</span><br><span class="line">&#125;</span><br><span class="line">let fn = (type: A | B):void =&gt; &#123;</span><br><span class="line">    console.log((&lt;A&gt;type).run);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>##<strong>内置对象</strong><br>###<strong>ecma Number Date RegExp Error XMLHtttprequest</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let num:Number = new Number(1)</span><br><span class="line">let date:Date =new Date()</span><br><span class="line">let reg = new RegExp(/\w/)</span><br><span class="line">let error:Error = new Error(&#x27;错了&#x27;)</span><br><span class="line">let xhr:XMLHtttprequest = new XMLHtttprequest()</span><br></pre></td></tr></table></figure>
+<p>###<strong>dom querySlector MouseEvent</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//HTML(元素名称)Element</span><br><span class="line">let div = document.querySlector(&#x27;div&#x27;) (as Element)</span><br><span class="line">let div:NodeList = document.querySlectorAll(&#x27;div&#x27;)</span><br><span class="line">let div:NodeListOf&lt;HTMLDivElement |  HTMLElement&gt;= document.querySlectorAll(&#x27;div&#x27;)</span><br></pre></td></tr></table></figure>
+<p>###<strong>bom promise localstorage locatioin cookie</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let local:Storage = localStorage</span><br><span class="line">let lo:location = location</span><br><span class="line">let promise:Promise&lt;number&gt; = new Promise((r)=&gt;(r(1))</span><br><span class="line">let cookie:string = document.cookie</span><br></pre></td></tr></table></figure>
+<p>###<strong>案例代码雨</strong></p>
+<p>##<strong>Class 类</strong><br>###<strong>class 的基本用法 继承 和 类型约束 implements</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">interface Options &#123;</span><br><span class="line">    el: string | HTMLElement</span><br><span class="line">&#125;</span><br><span class="line">interface VueCls &#123;</span><br><span class="line">    opstions: Options</span><br><span class="line">    init(): void</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Vue implements VueCls&#123; // 约束</span><br><span class="line">    options: Options</span><br><span class="line">    constructor (options: Options) &#123;</span><br><span class="line">        this.options = options</span><br><span class="line">    &#125;</span><br><span class="line">    init(): void &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">new Vue &#123;</span><br><span class="line">    constructor () &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">new Vue &#123;</span><br><span class="line">    el:&quot;#app&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虚拟DOM 简单版</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">interface Vnode &#123;</span><br><span class="line">    tag: string // div section header</span><br><span class="line">    text?: string //123</span><br><span class="line">    children?: Vnode[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class DOM &#123;</span><br><span class="line">    //constructor(name: string)&#123;</span><br><span class="line">    //&#125;</span><br><span class="line">    //创建节点的方法</span><br><span class="line">    createElement (el:string) &#123;</span><br><span class="line">        return document.createElement(el)</span><br><span class="line">    &#125;</span><br><span class="line">    //填充文本的方法</span><br><span class="line">    setText (el:HTMLElemrnt, text:string | null) &#123;</span><br><span class="line">        el.textContent = text;</span><br><span class="line">    &#125;</span><br><span class="line">    //渲染函数</span><br><span class="line">    render (data:Vnode) &#123;</span><br><span class="line">        let root = this.createElement(data.tag)</span><br><span class="line">        if (data.children &amp;&amp; Array.isArray(data.children))&#123;</span><br><span class="line">            data.children.forEach(item=&gt;&#123;</span><br><span class="line">                let child = this.render(item)</span><br><span class="line">                root.appendChild(child)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            this.setText(root,data.text)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return root</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Vue extends DOM implements VueCls&#123; // 继承 + 约束</span><br><span class="line">    options: Options</span><br><span class="line">    constructor (options: Options) &#123;</span><br><span class="line">        super() //初始化父类</span><br><span class="line">        this.options = options</span><br><span class="line">        this.init()</span><br><span class="line">    &#125;</span><br><span class="line">    init(): void &#123;</span><br><span class="line">        //虚拟dom 就是通过js 去渲染真实的dom</span><br><span class="line">        let data:Vnode = &#123;</span><br><span class="line">            tag: &quot;div&quot;,</span><br><span class="line">            children:[</span><br><span class="line">                &#123;</span><br><span class="line">                    tag: &quot;section&quot;,</span><br><span class="line">                    text: &quot;我是子节点1&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    tag: &quot;section&quot;,</span><br><span class="line">                    text: &quot;我是子节点2&quot;</span><br><span class="line">                &#125;,...</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">        let app = typeof this.options.el == &#x27;string&#x27; ? document.querySelector(this.options.el) : this.options.el</span><br><span class="line">        app.appendChild(this.render(data))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">    el: &quot;#app&quot;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>###<strong>class 的修饰符 readonly private protected public</strong></p>
+<ul>
+<li>private 加在属性&#x2F;方法前<ul>
+<li>属性&#x2F;方法 只能在内部使用</li>
+</ul>
+</li>
+<li>protected 给子类和内部去使用<ul>
+<li>在外部仍然无法使用</li>
+</ul>
+</li>
+<li>public 所有方法默认</li>
+</ul>
+<p>###<strong>super 原理</strong><br>super 指向父类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">super() //父类的prototype.constructor.call</span><br></pre></td></tr></table></figure>
+<p>也可以通过super. 直接调用父类的属性&#x2F;方法<br>###<strong>静态方法</strong><br>Promise.all 之类， 不使用new 直接调用的属于静态方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Vue extends DOM implements VueCls&#123; // 继承 + 约束</span><br><span class="line">    options: Options</span><br><span class="line">    constructor (options: Options) &#123;</span><br><span class="line">        super() //初始化父类</span><br><span class="line">        this.options = options</span><br><span class="line">        this.init()</span><br><span class="line">    &#125;</span><br><span class="line">    static xxx() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    static version () &#123;</span><br><span class="line">        this.xxx //可以</span><br><span class="line">        this.init //不行  static中只能调用同样为static 的方法/属性</span><br><span class="line">        return &#x27;1.0.0&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    init(): void &#123;</span><br><span class="line">        //虚拟dom 就是通过js 去渲染真实的dom</span><br><span class="line">        let data:Vnode = &#123;</span><br><span class="line">            tag: &quot;div&quot;,</span><br><span class="line">            children:[</span><br><span class="line">                &#123;</span><br><span class="line">                    tag: &quot;section&quot;,</span><br><span class="line">                    text: &quot;我是子节点1&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    tag: &quot;section&quot;,</span><br><span class="line">                    text: &quot;我是子节点2&quot;</span><br><span class="line">                &#125;,...</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">        let app = typeof this.options.el == &#x27;string&#x27; ? document.querySelector(this.options.el) : this.options.el</span><br><span class="line">        app.appendChild(this.render(data))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>get set</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Ref &#123;</span><br><span class="line">    _value:any</span><br><span class="line">    constructor (value:any) &#123;</span><br><span class="line">        this._value = value;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    get value () &#123;</span><br><span class="line">        return this._value + &#x27;vv&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    set value (newVal) &#123;</span><br><span class="line">        this._value = newVal + &#x27;xx&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const ref = neew Ref(&#x27;哈哈哈&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>##<strong>抽象类（基类）</strong></p>
+<ul>
+<li>abstract 所定义的抽象类</li>
+<li>abstract 所定义的方法 都只能描述不能进行一个实现</li>
+<li>抽象类无法被实例化<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">abstract class Vue &#123;</span><br><span class="line">    name: string</span><br><span class="line">    constructor (name?:string) &#123;</span><br><span class="line">        this.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    getName ():string &#123;</span><br><span class="line">        return this.name</span><br><span class="line">    &#125;</span><br><span class="line">    abstract init(name:string):void&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class React extends Vue&#123;</span><br><span class="line">    constructor () &#123;</span><br><span class="line">        super()</span><br><span class="line">    &#125;</span><br><span class="line">    init (name:string) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    setName (name:string) &#123;</span><br><span class="line">        this.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const react = new React()</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>##<strong>元组类型</strong><br>元组就是数组的变种<br>数量固定 类型可不同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let arr:[number,boolean] = [1,false]</span><br><span class="line">arr[0] = 6</span><br><span class="line">arr.push(number/boolean) //越界后推断为联合类型,以const 定义仍然可以修改</span><br><span class="line">//const 定义不能直接更改arr 整体</span><br><span class="line">//若不想arr[]被修改，使用const arr:readonly[x:number,y?:boolean] 定义</span><br><span class="line">let excel:[string,string,number][] = [</span><br><span class="line">    [string,string,number],</span><br><span class="line">    ...</span><br><span class="line">]</span><br><span class="line">type first = typeof arr[0]</span><br><span class="line">type first = typeof arr[&#x27;length&#x27;] //读取元组长度</span><br></pre></td></tr></table></figure>
+
+<p>##<strong>枚举类型</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">    red, //0</span><br><span class="line">    green, //1</span><br><span class="line">    blue //2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>增长枚举</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">    red = 1,</span><br><span class="line">    green, //2</span><br><span class="line">    blue //3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>字符串枚举</strong><br>无法递增，建议全部自定义</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">    red = &#x27;red&#x27;,</span><br><span class="line">    green = &#x27;green&#x27;,</span><br><span class="line">    blue = &#x27;blue&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>异构枚举</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">    yes = 1,</span><br><span class="line">    no = &#x27;no&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>接口枚举</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">    yes = 1,</span><br><span class="line">    no = &#x27;no&#x27;</span><br><span class="line">&#125;</span><br><span class="line">interface A &#123;</span><br><span class="line">    red:Color.yes</span><br><span class="line">&#125;</span><br><span class="line">let obj:A = &#123;</span><br><span class="line">    red:Color.yes/1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>Const 枚举</strong><br>相对于普通定义<br>不会被编译为对象<br>会直接编译成常量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const enum Types &#123;</span><br><span class="line">    success,</span><br><span class="line">    fail</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let code:number = 0</span><br><span class="line">if(code ===Types.success)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<strong>反向映射</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum Types &#123;</span><br><span class="line">    success,</span><br><span class="line">    fail</span><br><span class="line">&#125;</span><br><span class="line">let success:number = Types.success</span><br><span class="line">let key = Types[success]//反向映射，但不支持字符串</span><br></pre></td></tr></table></figure>
+<p>##<strong>类型推论 | 类型别名</strong><br>###<strong>类型别名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">type s = string | numuber</span><br><span class="line">type s = (name:string) =&gt; void</span><br><span class="line">type s = &#123;name:string&#125;</span><br><span class="line">type s = number[] &amp; B</span><br><span class="line">let str:s = &#x27;...&#x27;</span><br><span class="line">//无法天然继承</span><br><span class="line">//无法合并</span><br><span class="line"></span><br><span class="line">interface A extends B &#123;</span><br><span class="line">&#125;</span><br><span class="line">interface A &#123;</span><br><span class="line">&#125;</span><br><span class="line">//无法天然联合类型</span><br></pre></td></tr></table></figure>
+<p>###<strong>type 高级用法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//extends 是包含的意思</span><br><span class="line">//左边的值 会作为 右边类型 的子类型</span><br><span class="line">//1.any unknown</span><br><span class="line">//2.Object</span><br><span class="line">//3.Number String Boolean</span><br><span class="line">//4.number string boolean</span><br><span class="line">//5.never</span><br><span class="line">type num = 1 extends number ? 1 : 0 //返回1</span><br></pre></td></tr></table></figure>
+<p>##<strong>never 类型</strong><br>永远无法到达的类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">type A = string &amp; number // never</span><br><span class="line"></span><br><span class="line">type A = void | number | never //联合类型中never 会被直接忽略</span><br><span class="line"></span><br><span class="line">function xm ():never &#123;</span><br><span class="line">    while() (true) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    throw new Error(&#x27;...&#x27;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type A = &#x27;唱&#x27; | &#x27;跳&#x27; | &#x27;rap&#x27; | &#x27;篮球&#x27;</span><br><span class="line">function kun (value) &#123;</span><br><span class="line">    switch (value) &#123;</span><br><span class="line">        case &quot;唱&quot;:</span><br><span class="line">            break</span><br><span class="line">        case &quot;跳&quot;:</span><br><span class="line">            break</span><br><span class="line">        case &quot;rap&quot;:</span><br><span class="line">            break</span><br><span class="line">        case &quot;篮球&quot;:</span><br><span class="line">            break</span><br><span class="line">        default:</span><br><span class="line">            //兜底逻辑</span><br><span class="line">            const error:never = value;</span><br><span class="line">            break</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##<strong>symbol 类型</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let a1:symbol = Symbol(1) //唯一的</span><br><span class="line">let a2:symbol = Symbol(1) //唯一的</span><br><span class="line">//两者不相等</span><br><span class="line"></span><br><span class="line">//for Symbol for 全局symbol 有没有注册过这个key 如果有会直接拿来用 如果没有就创建一个</span><br><span class="line">Symbol.for(&#x27;...&#x27;) === Symbol.for(&#x27;...&#x27;) //可以返回true</span><br></pre></td></tr></table></figure>
+<p>###<strong>具体场景</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">    name:1,</span><br><span class="line">    [a1]:111, // 取key</span><br><span class="line">    [a2]:222  // 可以防止重复</span><br><span class="line">&#125;</span><br><span class="line">for in //不能读到symbol</span><br><span class="line">Object.keys(obj) //不能读到symbol</span><br><span class="line">Object.getOwnPropertyNames(obj) //不能读到symbol</span><br><span class="line">Object.getOwnPropertySymbols(obj) //能读到symbol，但不能读到name</span><br><span class="line">Reflect.ownKeys(obj) // 能同时读到symbol 和name  es6新增</span><br></pre></td></tr></table></figure>
+<p>###<strong>生成器</strong><br>用法与迭代器一样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function* gen () &#123;</span><br><span class="line">    yield Promise.resolve(&#x27;.&#x27;) //同步异步都支持</span><br><span class="line">    yield &#x27;..&#x27;</span><br><span class="line">    yield &#x27;...&#x27;</span><br><span class="line">    yield &#x27;....&#x27;</span><br><span class="line">&#125;</span><br><span class="line">const man = gen()</span><br><span class="line">man.next() // &#x27;.&#x27;</span><br><span class="line">--&gt;&#123;value: Promise&#123;&#x27;.&#x27;&#125;, done: false&#125;</span><br><span class="line">done 为true 说明无下一个</span><br><span class="line">man.next() // &#x27;..&#x27;</span><br><span class="line">man.next() // &#x27;...&#x27;</span><br><span class="line">man.next() // &#x27;....&#x27;</span><br><span class="line">//即使有异步也按顺序来</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>迭代器</strong><br>###<strong>set map</strong></p>
+<ul>
+<li>set<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">let set:Set&lt;number&gt; = new Set([1,1,2,2,3,3]) // 天然去重 1 2 3</span><br><span class="line"></span><br><span class="line">let map:Map&lt;&gt; = new Map()</span><br><span class="line">let Arr = [1,2,3]</span><br><span class="line">map.set(Arr,&#x27;...&#x27;)</span><br><span class="line">map.get(Arr) --&gt; &#x27;...&#x27;</span><br><span class="line"></span><br><span class="line">funxtion args () &#123;</span><br><span class="line">    console.log(arguments) // 伪数组/类数组</span><br><span class="line">&#125;</span><br><span class="line">let list = document.querySelectorAll(&#x27;div&#x27;) //伪数组</span><br><span class="line">list.forEach() // 有</span><br><span class="line"></span><br><span class="line">const each = (value:any) =&gt; &#123;</span><br><span class="line">    let It: any = value[Symbol.iterator]() //获取迭代器</span><br><span class="line">    let next: any = &#123; done: false &#125;</span><br><span class="line">    while (!next.done) &#123;</span><br><span class="line">        next = It.next()</span><br><span class="line">        if(!next.done)&#123;</span><br><span class="line">            console.log(next.value)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">each(map)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>###<strong>迭代器语法糖</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (let value of map) &#123;</span><br><span class="line">    console.log(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<font color='red'>对象没有 iterator 不可以使用 for of</font><br>###<strong>解构</strong></p>
+<ul>
+<li>解构的底层原理是调用 iterator</li>
+<li>…的原理也是</li>
+</ul>
+<p>###<strong>对象支持 for of</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">    max:5,</span><br><span class="line">    current:0,</span><br><span class="line">    [Symbol.iterator]() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            max:this.max,</span><br><span class="line">            current.this.current,</span><br><span class="line">            next () &#123;</span><br><span class="line">                if(this.current == this.max)&#123;</span><br><span class="line">                    return &#123;</span><br><span class="line">                        value:undefined,</span><br><span class="line">                        done:true</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    return &#123;</span><br><span class="line">                        value: this.current++,</span><br><span class="line">                        done: false</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for (let value of obj) &#123;</span><br><span class="line">    console.log(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##<strong>泛型</strong><br>###<strong>泛型</strong><br>动态类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function asd(a:number,b:number):Array&lt;number&gt;&#123;</span><br><span class="line">    return [a,b]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function asdf(a:string,b:string):Array&lt;string&gt;&#123;</span><br><span class="line">    return [a,b]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">function asd&lt;T&gt;(a:T,b:T):Array&lt;T&gt;&#123;</span><br><span class="line">    return [a,b]</span><br><span class="line">&#125;</span><br><span class="line">asd&lt;numuber&gt;(1,2)</span><br><span class="line">asd(false,true)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">type A&lt;T&gt; = string | number | T</span><br><span class="line">let a:A&lt;boolean&gt; = 1</span><br><span class="line"></span><br><span class="line">interface Data&lt;T&gt; &#123;</span><br><span class="line">    msg: T</span><br><span class="line">&#125;</span><br><span class="line">let data:Data&lt;string&gt; = &#123;</span><br><span class="line">    msg: &quot;...&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function add&lt;T = number,K = number&gt;(a:T,b:K):Array&lt;T | K&gt;&#123; //默认 可以改变</span><br><span class="line">    return [a,b]</span><br><span class="line">&#125;</span><br><span class="line">add(1,false)</span><br><span class="line"></span><br><span class="line">const axios = &#123;</span><br><span class="line">    get&lt;T&gt;(url: string):Promise&lt;T&gt; &#123;</span><br><span class="line">        return new Promise((resolve, reject)=&gt;&#123;</span><br><span class="line">            let xhr:XMLHttpRequest = new XMLHttpRequest()</span><br><span class="line">            xhr.open(&#x27;GET&#x27;, url)</span><br><span class="line">            xhr.onreadystatechange = () =&gt; &#123;</span><br><span class="line">                if (xhr.readyState == 4 &amp;&amp; xhr.status == 200)&#123;</span><br><span class="line">                    resolve(JSON.prase(xhr.responseText))</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            xhr.send(null)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">interface Data &#123;</span><br><span class="line">    message: string</span><br><span class="line">    code: number</span><br><span class="line">&#125;</span><br><span class="line">axios.get(&#x27;./data.json&#x27;).then(res=&gt;&#123;</span><br><span class="line">    console.log(res.code)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>###<strong>泛型约束</strong><br>####在类型后面跟一个 extends 在跟一个约束的类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function add&lt;T extends number&gt;(a:T,b:T)&#123;</span><br><span class="line">    return a + b</span><br><span class="line">&#125;</span><br><span class="line">add(undefined.undefined)</span><br><span class="line"></span><br><span class="line">interface Len &#123;</span><br><span class="line">    length:number</span><br><span class="line">&#125;</span><br><span class="line">function fn&lt;T extends Len&gt;(a:T)&#123;</span><br><span class="line">    a.length</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br><span class="line"></span><br><span class="line">let obj = &#123;</span><br><span class="line">    name:&quot;...&quot;,</span><br><span class="line">    sex&quot;..&quot;</span><br><span class="line">&#125;</span><br><span class="line">type Key = keyof typeof obj</span><br><span class="line">function ob&lt;T extends object,K extends keyof T&gt;(obj:T,key:K)&#123;</span><br><span class="line">    return obj[key]</span><br><span class="line">&#125;</span><br><span class="line">ob(obj,&#x27;name&#x27;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>keyof 的高级用法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">interface Data &#123;</span><br><span class="line">    name?:string</span><br><span class="line">    age?:number</span><br><span class="line">    age?:string</span><br><span class="line">&#125;</span><br><span class="line">//for in  for(let key in obj)</span><br><span class="line">type Options&lt;T extends object&gt; = &#123;</span><br><span class="line">    [Key in keyof T]?:T[Key]</span><br><span class="line">&#125;</span><br><span class="line">type B = Options&lt;Data&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>##<strong>tsconfig.json 配置文件</strong><br>生成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --init</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改文件后tsc 重新编译</li>
+<li>compolerOptions 配置选项<ul>
+<li>incremental TS 编译器在第一次编译之后会生成一个存储缓存文件，第二次编译会在第一次的基础上读取第一次的缓存文件</li>
+<li>tsBuildInfoFile 增量编译文件的存储未知</li>
+<li>diagnostics 打印诊断信息</li>
+<li>target 目标语言的版本</li>
+<li>module 生成代码的模板标准</li>
+<li>outFile 将多个相互依赖的文件生成一个文件，可以用在AMD 模块中，即开启时应设置”module”:</li>
+<li>lib<ul>
+<li>TS 需要引用的库，即声明文件，es5 默认引用dom\es5\scripthost</li>
+<li>allowJS: false &#x2F;&#x2F;允许编译器编译JS\JSX文件</li>
+<li>checkJS: true &#x2F;&#x2F;允许在JS 文件中报错，通常与allowJS 一起使用</li>
+</ul>
+</li>
+<li>outDir 指定输出目录</li>
+<li>rootDir 指定输出文件目录（用于输出），用于控制输出目录结构</li>
+<li>declaration 指定生成声明文件存放目录</li>
+<li>emitDeclarationOnly: false 只生成声明文件，而不会生成js 文件</li>
+<li>sourceMap: false 生成目标文件的sourceMap 文件</li>
+<li>inlineSourceMap: false 生成目标文件的inline SourceMap，inline SourceMap 会包含在生成的js文件中</li>
+<li>declarationMap: true 为声明文件生成sourceMap</li>
+<li>typeRoots 声明文件目录，默认时node_modules&#x2F;@types</li>
+<li>types 加载的声明文件包</li>
+<li>removeComments 删除注释</li>
+<li>noEmit: false 不输出文件，即编译后不会生成任何js文件</li>
+<li>noEmitOnError: true 发送错误时不输出任何文件</li>
+<li>downlevelIteration: true 降级遍历器实现，如果目标源时es3&#x2F;5，那么遍历器会有降级的实现</li>
+<li>strict: true 开启所有严格的类型检查</li>
+<li>alwaysStrict 在代码中注入’use strict’</li>
+<li>noImplicitAny: true 不允许隐式的any 类型</li>
+<li>strictNullChecks 不允许把null、undefined 赋值给其它类型的变量</li>
+<li>strictFunctionTypes 不允许函数参数双向协变</li>
+<li>strictPropertyInitialization 类的实例属性必须初始化</li>
+<li>strictBindCallApply 严格的bind&#x2F;call&#x2F;apply 检查</li>
+<li>noImplicitThis: true 不允许this 有隐式的any 类型</li>
+<li>noUnusedLocals: true 检查只声明未使用的局部变量（只提示不报错）</li>
+<li>noUnusedParameters: true 检查未使用的函数参数（只提示不报错）</li>
+<li>noFallthroughCasesInSwitch: true 防止switch 语句贯穿（即如果没有break 语句后面不会执行）</li>
+<li>moduleResolution 模块解析策略，ts 默认用node 的解析策略，即相对的方式导入</li>
+<li>baseUrl 解析非相对模块的基地址，他会使用baseurl 选项作为url 路径，默认是当前目录</li>
+<li>jsxFactory 语法解析器</li>
+<li>jsx 解析器</li>
+<li>paths 路径映射，相对于baseUrl</li>
+</ul>
+</li>
+<li>include 指定编译的配置列表</li>
+<li>exclude 指定一个排除列表 （include）的反向操作</li>
+<li>files 指定哪些文件使用该配置</li>
+</ul>
+<p>##<strong>namespace 命名空间</strong><br>TypeScript 与ECMAScript 2015 一样，任何包含顶级import 或者export 的文件都被当成一个模块。相反的，如果一个文件不带有顶级的import 或者export 声明，那么它的内容被视为全局可见的（因此对模块也是可见的）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">namespace A&#123;</span><br><span class="line">    export const a = 1</span><br><span class="line">&#125;</span><br><span class="line">console.log(A.a)</span><br></pre></td></tr></table></figure>
+<p>###<strong>嵌套命名空间</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">namespace A &#123;</span><br><span class="line">    export namespace C &#123;</span><br><span class="line">        export const D = 5</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(A.C.D)</span><br></pre></td></tr></table></figure>
+<p>###<strong>抽离命名空间</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123; &#125; from &quot;&quot;</span><br></pre></td></tr></table></figure>
+<p>###<strong>简化命名空间</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">namespace A &#123;</span><br><span class="line">    export namespace C &#123;</span><br><span class="line">        export const D = 5</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">import AAA = A.C</span><br><span class="line">console.log(AAA.D)</span><br></pre></td></tr></table></figure>
+<p>###<strong>命名空间合并</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">namespace A &#123;</span><br><span class="line">    export const b = 5</span><br><span class="line">&#125;</span><br><span class="line">namespace A &#123;</span><br><span class="line">    export const d = 5</span><br><span class="line">&#125;</span><br><span class="line">//namespace A &#123;</span><br><span class="line">//    export const b = 5</span><br><span class="line">//    export const d = 5</span><br><span class="line">//</span><br><span class="line">//&#125;</span><br></pre></td></tr></table></figure>
+<p>##<strong>三斜线指令</strong><br>index2.ts</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">namespace A &#123;</span><br><span class="line">    export const a = 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>index3.ts</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">namespace A &#123;</span><br><span class="line">    export const b = 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">///&lt;reference path=&quot;index2.ts&quot; /&gt;</span><br><span class="line">///&lt;reference path=&quot;index3.ts&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>声明文件 也是通过三斜线指令导入其它<br>npm install @types&#x2F;node -D</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">///&lt;reference type=&quot;node&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>##<strong>声明文件d.ts</strong><br>前置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tsc --init // 生成tsconfig.json</span><br><span class="line">//新建index.ts</span><br><span class="line">npm init -y</span><br><span class="line">npm i express</span><br><span class="line">npm i axios</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import axios from &#x27;axios&#x27; //已有声明文件</span><br><span class="line">import express from &#x27;express&#x27; //没有声明文件</span><br><span class="line">//尝试使用 `npm i --save-dev @types/express` 安装声明文件</span><br><span class="line">//冷门库只能手写声明文件</span><br></pre></td></tr></table></figure>
+<p>以express 为例<br>新建express.d.ts</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import express from &#x27;express&#x27;</span><br><span class="line"></span><br><span class="line">const app = express()</span><br><span class="line"></span><br><span class="line">const router = express.Router()</span><br><span class="line"></span><br><span class="line">app.use(&#x27;/api&#x27;,router)</span><br><span class="line"></span><br><span class="line">router.get(&#x27;/api&#x27;,(req:any,res:any)=&gt;&#123;</span><br><span class="line">    res.json(&#123;</span><br><span class="line">        code:200</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line">app.listen(9001,()=&gt;&#123;</span><br><span class="line">    console.log(&#x27;9001&#x27;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">declare module &#x27;express&#x27; &#123;</span><br><span class="line">    interface Router &#123;</span><br><span class="line">        get(path:string,cb?:(req:any,res:any)=&gt;void):void</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    interface App &#123;</span><br><span class="line">        use(path:string,router:any):void</span><br><span class="line">        listen(port:number,cb?:()=&gt;void)</span><br><span class="line">    &#125;</span><br><span class="line">    interface Express &#123;</span><br><span class="line">        ():App</span><br><span class="line">        Router():Router</span><br><span class="line">    &#125;</span><br><span class="line">    const express:Express</span><br><span class="line">    </span><br><span class="line">    export default express</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare var/let a:number</span><br><span class="line"></span><br><span class="line">declare function name(params:type)&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare class Vue &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare enum C &#123;</span><br><span class="line">    a = 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare </span><br></pre></td></tr></table></figure>
+
+<p>##<strong>Mixins 混入</strong><br>###<strong>对象混入</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">interface Name &#123;</span><br><span class="line">    name: string</span><br><span class="line">&#125;</span><br><span class="line">interface Age &#123;</span><br><span class="line">    age: number</span><br><span class="line">&#125;</span><br><span class="line">interface Sex &#123;</span><br><span class="line">    sex: number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let a:Name = &#123;name:&quot;Ckaheuen&quot;&#125;</span><br><span class="line">let a:Age = &#123;age:19&#125;</span><br><span class="line">let a:Sex = &#123;sex:1&#125;</span><br><span class="line"></span><br><span class="line">let obj = Object.assigh(a,b,c)</span><br></pre></td></tr></table></figure>
+<p>###<strong>类的混入</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class A &#123;</span><br><span class="line">    type: boolean</span><br><span class="line">    changeType():void &#123;</span><br><span class="line">        this.type = !this.type</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class B &#123;</span><br><span class="line">    name: string</span><br><span class="line">    getName(): string &#123;</span><br><span class="line">        return this.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class C implements A,B&#123;</span><br><span class="line">    type: boolean = false</span><br><span class="line">    name: string = &quot;Cksheuen&quot;</span><br><span class="line">    changeType:() =&gt; void</span><br><span class="line">    getName:() =&gt; string</span><br><span class="line">&#125;</span><br><span class="line">mixins(C,[A,B])</span><br><span class="line">function mixins (curClas:any,itenCls:any[]) &#123;</span><br><span class="line">    itenCls.forEach(item =&gt; &#123;</span><br><span class="line">        console.log(item)</span><br><span class="line">        Object.getOwnPropertyNames(item.oritotype).forEach(name=&gt;&#123;</span><br><span class="line">            console.log(name)</span><br><span class="line">            curClas.prototype[name] = item.prototype[name]</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let ccc = new C()</span><br><span class="line">console.log(ccc.type)   //false</span><br><span class="line">ccc.changeType()</span><br><span class="line">console.log(ccc.type)   //true</span><br></pre></td></tr></table></figure>
+<p>##<strong>装饰器Decorator</strong><br>###<strong>前置</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tsc --init</span><br><span class="line">&quot;target&quot;</span><br><span class="line">    experimentalDecorators: true</span><br><span class="line">    emitDecoratorMetadata: true</span><br></pre></td></tr></table></figure>
+<p>###<strong>类装饰器 ClassDectorator</strong></p>
+<ul>
+<li>target 返回构造函数</li>
+<li>优势<ul>
+<li>不破坏自身原有结构 给类增加方法&#x2F;属性<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const Base:ClassDectorator = (target) =&gt; &#123;</span><br><span class="line">    target.prototype.cksheuen = &#x27;cksheuen&#x27;</span><br><span class="line">    target.prototype.fn = () =&gt; &#123;</span><br><span class="line">        console.log(&#x27;...&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Base</span><br><span class="line">class Http &#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br><span class="line">const http = new Http() as any</span><br><span class="line"></span><br><span class="line">console.log(http.cksheuen)</span><br><span class="line">http.fn()</span><br><span class="line"></span><br><span class="line">Base(Http)</span><br><span class="line">http.fn()</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>###<strong>装饰器工厂</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const Base = (name:string) =&gt; &#123;</span><br><span class="line">    const fn:ClassDecorator = (target) =&gt; &#123;</span><br><span class="line">        target.prototype.cksheuen = name</span><br><span class="line">        target.prototype.fn = () =&gt; &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return fn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Base(&#x27;xiao&#x27;)</span><br><span class="line">class Http &#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br><span class="line">const http = new Http() as any</span><br><span class="line">console.loh(http.cksheuen</span><br><span class="line">Base(Http)</span><br><span class="line">http.fn()</span><br></pre></td></tr></table></figure>
+<p>###<strong>方法装饰器 MethodDecorator</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">import axios from &#x27;axios&#x27;</span><br><span class="line">import &#x27;reflect-metadata&#x27;</span><br><span class="line">const Base = (name:string) =&gt; &#123;</span><br><span class="line">    const fn:ClassDecorator = (target) =&gt; &#123;</span><br><span class="line">        target.prototype.cksheuen = name</span><br><span class="line">        target.prototype.fn = () =&gt; &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return fn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Get = (url:string) =&gt; &#123;</span><br><span class="line">    const fn:MethodDecorator = (target,_:any,descripter:PropertyDescriptor) =&gt; &#123;</span><br><span class="line">        console.log(target,key,descripter)</span><br><span class="line">        const key = Reflect.getMetadata(&#x27;key&#x27;,target)</span><br><span class="line">        axios.get(url).then(res=&gt;&#123;</span><br><span class="line">            descripter.value(res.data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    return fn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Result = () =&gt; &#123;</span><br><span class="line">    const fn:ParameterDecorator = (target,key,index) =&gt; &#123;</span><br><span class="line">        Reflect.defineMetadata(&#x27;key&#x27;,&#x27;result&#x27;,target)</span><br><span class="line">    &#125;</span><br><span class="line">    return fn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Base(&#x27;xiao&#x27;)</span><br><span class="line">class Http &#123;</span><br><span class="line">    @Get(&#x27;https://...&#x27;)</span><br><span class="line">    getList ( @Result() data:any) &#123;</span><br><span class="line">        console.log(data)</span><br><span class="line">    &#125;</span><br><span class="line">    @Post(&#x27;https://...&#x27;)</span><br><span class="line">    create () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const http = new Http() as any</span><br><span class="line">console.loh(http.cksheuen</span><br><span class="line">Base(Http)</span><br><span class="line">http.fn()</span><br></pre></td></tr></table></figure>
+<p>###<strong>属性装饰器</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">import axios from &#x27;axios&#x27;</span><br><span class="line">import &#x27;reflect-metadata&#x27;</span><br><span class="line">const Base = (name:string) =&gt; &#123;</span><br><span class="line">    const fn:ClassDecorator = (target) =&gt; &#123;</span><br><span class="line">        target.prototype.cksheuen = name</span><br><span class="line">        target.prototype.fn = () =&gt; &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return fn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Get = (url:string) =&gt; &#123;</span><br><span class="line">    const fn:MethodDecorator = (target,_:any,descripter:PropertyDescriptor) =&gt; &#123;</span><br><span class="line">        console.log(target,key,descripter)</span><br><span class="line">        const key = Reflect.getMetadata(&#x27;key&#x27;,target) //取</span><br><span class="line">        axios.get(url).then(res=&gt;&#123;</span><br><span class="line">            descripter.value(key ? res.data[key] : res.data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    return fn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Result = () =&gt; &#123;</span><br><span class="line">    const fn:ParameterDecorator = (target,key,index) =&gt; &#123;//index 是参数位置 目前为0</span><br><span class="line">        Reflect.defineMetadata(&#x27;key&#x27;,&#x27;result&#x27;,target) //存</span><br><span class="line">    &#125;</span><br><span class="line">    return fn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Name:PropertyDescriptor = (target,key) =&gt; &#123; // 属性装饰器</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Base(&#x27;xiao&#x27;)</span><br><span class="line">class Http &#123;</span><br><span class="line">    @Name</span><br><span class="line">    cksheuen:string</span><br><span class="line">    constructor () &#123;</span><br><span class="line">        this.cksheuen = &#x27;cksheuen&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    @Get(&#x27;https://...&#x27;)</span><br><span class="line">    getList ( @Result() data:any) &#123; //参数装饰器</span><br><span class="line">        console.log(data)</span><br><span class="line">    &#125;</span><br><span class="line">    @Post(&#x27;https://...&#x27;)</span><br><span class="line">    create () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const http = new Http() as any</span><br><span class="line">console.loh(http.cksheuen</span><br><span class="line">Base(Http)</span><br><span class="line">http.fn()</span><br></pre></td></tr></table></figure>
+<p>###<strong>参数装饰器</strong></p>
+<p>##<strong>Rollup 构建TS 项目</strong><br>###<strong>安装依赖</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br><span class="line">rollup.config.js</span><br><span class="line">    export default &#123;</span><br><span class="line">    &#125;</span><br><span class="line">src</span><br><span class="line">    index.ts</span><br><span class="line">public</span><br><span class="line">    index.html</span><br><span class="line">tsc --init</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>###**rollup.config.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import path from &#x27;path&#x27;</span><br><span class="line">import ts from &#x27;rollup-plugin-typescript2&#x27;</span><br><span class="line">import serve from &#x27;rollup-pludin-serve&#x27;</span><br><span class="line">import livereload from &#x27;rpllup-plugin-livereload&#x27;</span><br><span class="line">import &#123; terser &#125; from &#x27;rpllup-plugin-terser&#x27; //代码压缩</span><br><span class="line">export default &#123;</span><br><span class="line">    input:&quot;./src/index.ts&quot;,</span><br><span class="line">    </span><br><span class="line">    output:&#123;</span><br><span class="line">        file:path.resolve(__dirname,&#x27;./lib/index.js&#x27;),</span><br><span class="line">        format:&#x27;umd&#x27;,</span><br><span class="line">        sourcemap:true // sourcemap: true tsconfig.json 中</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    plugins:[</span><br><span class="line">        ts(),</span><br><span class="line">        livereload(),</span><br><span class="line">        serve(&#123;</span><br><span class="line">            open: true,</span><br><span class="line">            port: 1988,</span><br><span class="line">            openPage:&quot;/public/index.html&quot;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装typescript rollup-plugin-typescript2<ul>
+<li>使得ts 得以被rollup 解读</li>
+</ul>
+</li>
+<li>配置命令”build”:”rollup -c”</li>
+<li>tsconfig<ul>
+<li>module: ES2015</li>
+<li>dev: rollup -c -w</li>
+</ul>
+</li>
+<li>npm run build</li>
+</ul>
+<p>##<strong>webpack构建TS项目</strong><br>###<strong>安装依赖</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack -D 安装webpack</span><br><span class="line">npm install  webpack-cli -D webpack4以上需要</span><br><span class="line">npm install ts-loader -D 编译TS</span><br><span class="line">npm install typescript -D TS环境</span><br><span class="line">npm install  webpack-dev-server -D 热更新服务</span><br><span class="line">npm install html-webpack-plugin -D HTML模板</span><br></pre></td></tr></table></figure>
+<p>###<strong>配置文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;)</span><br><span class="line">const htmlWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &quot;./src/index.ts&quot;,</span><br><span class="line">    mode: &quot;development&quot;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, &#x27;./dist&#x27;),</span><br><span class="line">        filename: &quot;index.js&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    stats: &quot;none&quot;,</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        extensions: [&#x27;.ts&#x27;, &#x27;.js&#x27;],</span><br><span class="line">        alias: &#123;</span><br><span class="line">            &#x27;@&#x27;: path.resolve(__dirname, &#x27;./src&#x27;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">                test: /\.ts$/,</span><br><span class="line">                use: &quot;ts-loader&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        port: 1988,</span><br><span class="line">        proxy: &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        new htmlWebpackPlugin(&#123;</span><br><span class="line">            template: &quot;./public/index.html&quot;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>##<strong>esbuild + swc 构建 ts 项目</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm install @swc/core esbuild (@swc/helpers)</span><br><span class="line"></span><br><span class="line">// 创建index.js</span><br><span class="line"></span><br><span class="line">// tsc --init 创建 tsconfig.json</span><br><span class="line">target, moudule: ESNext</span><br><span class="line">mouduleResolution: node</span><br></pre></td></tr></table></figure>
+
+<p>####<strong>config.ts</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import esbuild、swc、fs</span><br><span class="line"></span><br><span class="line">await esbuild.build(&#123;</span><br><span class="line">    extryPoints: [&#x27;.index.ts&#x27;], // 入口文件</span><br><span class="line">    treeShaking: true,</span><br><span class="line">    bundle: true, // 独立打包</span><br><span class="line">    loader:&#123;</span><br><span class="line">        &#x27;.js&#x27;:&quot;js&quot;,</span><br><span class="line">        &#x27;.ts&#x27;:&quot;ts&quot;,</span><br><span class="line">        &#x27;.jsx&#x27;:&quot;jsx&quot;,</span><br><span class="line">        &#x27;.tsx&#x27;:&quot;tsx&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    pluginis:[</span><br><span class="line">        &#123;</span><br><span class="line">            name:&#x27;swc-loader&quot;,</span><br><span class="line">            setup(build)&#123;</span><br><span class="line">                build.onload(&#123;filter:/\.(js|ts|jsx|tsx)$/&#125;,(args)=&gt;&#123;</span><br><span class="line">                    const content = fs.readFileSync(args.path,&quot;utf-8&quot;)</span><br><span class="line">                    console.log(content)</span><br><span class="line">                    const &#123;code,map&#125; = swc.transformSync(content,&#123;</span><br><span class="line">                        filename:args.path</span><br><span class="line">                    &#125;)</span><br><span class="line">                    return &#123;</span><br><span class="line">                        content:code</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    outdir: &quot;dist&quot;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ts-node-esm config.ts 执行</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>esbuild</strong></p>
+<p>###<strong>swc</strong></p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2023/09/14/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+      title="JS笔记但是不全"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        JS笔记但是不全
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/09/14/TypeScript/"
+      title="TS一"
+     >
+
+    <p class="title-text">
+      
+        TS一
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2023 Cksheuen<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>

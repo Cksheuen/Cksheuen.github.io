@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>TS一 | Cksheuen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="TypeScriptTypeScript 文件以 .ts 结尾，在使用 ts 之前，需要安装 typescript 和 ts-node： 1npm i -g typescript ts-node  想要测试写的文件，请使用以下命令： 1ts-node fileName.ts  其实是用 nodemon 也可以 1nodemon fileName.ts  简单的例子TS 可以理解为带有类型的 JS，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TS一">
+<meta property="og:url" content="http://cksheuen.com/2023/09/14/TypeScript/index.html">
+<meta property="og:site_name" content="Cksheuen&#39;s Blog">
+<meta property="og:description" content="TypeScriptTypeScript 文件以 .ts 结尾，在使用 ts 之前，需要安装 typescript 和 ts-node： 1npm i -g typescript ts-node  想要测试写的文件，请使用以下命令： 1ts-node fileName.ts  其实是用 nodemon 也可以 1nodemon fileName.ts  简单的例子TS 可以理解为带有类型的 JS，">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-14T05:24:11.957Z">
+<meta property="article:modified_time" content="2023-09-14T05:33:05.227Z">
+<meta property="article:author" content="Cksheuen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Cksheuen's Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Cksheuen's Blog </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Cksheuen </div>
+      <div class="dot"></div>
+      <div class="subtitle">This is the subtitle </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/Cksheuen" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2023/09 ">
+          September 2023 
+          <div class="archive-count">11 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/04 ">
+          April 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2023/09/14/--node.js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--/" title="学完之后一脸懵的Node.js" >
+            <div class="recent-link-text">
+              学完之后一脸懵的Node.js
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/GIT&&GitHub/" title="GIT&GitHub" >
+            <div class="recent-link-text">
+              GIT&amp;GitHub
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/JS%E2%80%94%E2%80%94%E8%AF%A5%E5%AD%A6%E7%9A%84%E9%80%83%E4%B8%8D%E6%8E%89/" title="发现太菜察觉漏学所以~被迫~自愿回来重学的JS" >
+            <div class="recent-link-text">
+              发现太菜察觉漏学所以~被迫~自愿回来重学的JS
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/REST%20%E5%92%8C%20AJAX%20(%E5%8C%85%E5%90%AB%20Fetch%20%E5%92%8C%20Axios)/" title="REST和AJAX（含Fetch和Axios）" >
+            <div class="recent-link-text">
+              REST和AJAX（含Fetch和Axios）
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/09/14/title-%20VUE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="VUE学习笔记（版本一）" >
+            <div class="recent-link-text">
+              VUE学习笔记（版本一）
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-TypeScript" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        TS一
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-09-14T05:24:11.957Z" itemprop="datePublished">2023-09-14</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            3.5k words 
+          </div>
+        </div>
+        
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h1><p>TypeScript 文件以 <code>.ts</code> 结尾，在使用 <code>ts</code> 之前，需要安装 <code>typescript</code> 和 <code>ts-node</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g typescript ts-node</span><br></pre></td></tr></table></figure>
+
+<p>想要测试写的文件，请使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ts-node fileName.ts</span><br></pre></td></tr></table></figure>
+
+<p>其实是用 <code>nodemon</code> 也可以</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodemon fileName.ts</span><br></pre></td></tr></table></figure>
+
+<h2 id="简单的例子"><a href="#简单的例子" class="headerlink" title="简单的例子"></a>简单的例子</h2><p>TS 可以理解为带有类型的 JS，例如下面的例子：</p>
+<p><strong>JS 声明类型：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="keyword">let</span> num = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> bool = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  JS 是弱类型语言，意味着 JS 会自动推断&#x2F;转换类型，开发者不需要考虑变量类型不一致导致的错误，但是这样也会导致很多的问题，例如在大型项目中，很难定位到错误的地方</p>
+</blockquote>
+<p>同时也意味着后续变量也可以赋值为不同类型：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">str = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>TS 声明类型：</strong></p>
+<p>我们可以使用 <code>:</code> 运算符，在变量名后面<strong>注明类型</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">str</span>: <span class="built_in">string</span> = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">num</span>: <span class="built_in">number</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">bool</span>: <span class="built_in">boolean</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>当类型确定后，不可以赋值为其他类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">str</span>: <span class="built_in">string</span> = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">str = <span class="number">0</span> <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以省略类型，<code>ts</code> 会自动推断类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;hello world&#x27;</span> <span class="comment">// 等同于 let str: string = &#x27;hello world&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  另外一种声明类型语法是使用 <code>&lt;&gt;</code> 运算符，不过不常用，多用于方法&#x2F;数组的书写，此运算符下面章节会将</p>
+</blockquote>
+<h2 id="原始类型"><a href="#原始类型" class="headerlink" title="原始类型"></a>原始类型</h2><p><strong>ES6 规定的 JS 原始类型</strong>： number、string、boolean、null、undefined、symbol</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">age</span>: <span class="built_in">number</span> = <span class="number">18</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">uname</span>: <span class="built_in">string</span> = <span class="string">&#x27;xj&#x27;</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">isLoading</span>: <span class="built_in">boolean</span> = <span class="literal">true</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">b</span>: <span class="literal">undefined</span> = <span class="literal">undefined</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">s</span>: <span class="built_in">symbol</span> = <span class="title class_">Symbol</span>()</span><br></pre></td></tr></table></figure>
+
+<p>这里简单介绍一下 <code>symbol</code>，详细请看：<a target="_blank" rel="noopener" href="https://blog.plumbiu.club/2023/04/02/2023-4-2-%E9%87%8D%E5%AD%A6JS-Symbol/">重学JavaScript——Symbol | Plumbiuの小屋</a></p>
+<p><code>symbol</code> 表示独一无二的值，出现的目的是为了防止一些变量的重复，例如我们为别人提供的对象中添加属性时，很容易导致命名冲突，使用 <code>symbol</code> 可以解决这个问题，但是不经常用：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="title class_">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="title class_">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> s1) <span class="comment">// symbol</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(s1) <span class="comment">// Symbol(foo)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(s2) <span class="comment">// Symbol(foo)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(s1 === s2)</span><br></pre></td></tr></table></figure>
+
+<p><strong>应用：</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="title class_">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="title class_">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">	[s1]: <span class="string">&#x27;hello&#x27;</span>,</span><br><span class="line">  [s2]: <span class="string">&#x27;world&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[s1]) <span class="comment">// &quot;hello&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[s2]) <span class="comment">// &quot;world&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="title class_">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>)])</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他类型"><a href="#其他类型" class="headerlink" title="其他类型"></a>其他类型</h2><h3 id="any-类型"><a href="#any-类型" class="headerlink" title="any 类型"></a>any 类型</h3><blockquote>
+<p>  any 类型在开发中尽量不要使用，因为这会使得 TS 变为 JS。当然，在实际开发中，有些依赖使用的方法类型不确定，我们可以少量的使用 any</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: <span class="built_in">any</span> = <span class="number">1</span></span><br><span class="line">a = <span class="string">&#x27;str&#x27;</span></span><br><span class="line">a = <span class="literal">true</span></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h3><p>只需要在对应类型后加上 <code>[]</code> 即可</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">nums</span>: <span class="built_in">number</span>[] <span class="comment">// 表明是一个数字数组类型</span></span><br></pre></td></tr></table></figure>
+
+<p>或者使用 <code>&lt;&gt;</code> 语法(不推荐)</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">nums</span>: <span class="title class_">Array</span>(<span class="built_in">number</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="多个类型描述"><a href="#多个类型描述" class="headerlink" title="多个类型描述"></a>多个类型描述</h3><p>使用 <code>|</code> 或运算符，可以使得变量多个类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表示 nums 既可以是 number 也可以是 number[]</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">nums</span>: <span class="built_in">number</span> | <span class="built_in">number</span>[] = <span class="number">1</span></span><br><span class="line">nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><p><code>type</code> 可以让我们自定义一些类型，例如上述的 <code>number | number[]</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">TNums</span> = <span class="built_in">number</span> | <span class="built_in">number</span>[]</span><br></pre></td></tr></table></figure>
+
+<p>此时，我们便可以使用 <code>TNums</code> 来代替 <code>number | number[]</code> 类型了</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">nums</span>: <span class="title class_">TNums</span> = <span class="number">1</span></span><br><span class="line">nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="interface-接口"><a href="#interface-接口" class="headerlink" title="interface 接口"></a><code>interface</code> 接口</h3><p><code>interface</code> 可以描述一个对象，用于规范对象中的属性和属性值</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表示：类型为 IPerson 的对象必须且只能包含 name、age 属性，且两者属性值类型分别为 string、number</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IPerson</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="attr">person</span>: <span class="title class_">IPerson</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;xj&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">20</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果希望对象中有个属性是可选的，可以在 <code>interface</code> 中使用 <code>?</code> 可选运算符</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IPerson</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">  weight?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="attr">person</span>: <span class="title class_">IPerson</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;xj&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">20</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3><p>该类型可以指定函数中具体有什么参数(及参数类型)和函数的返回值(及返回值类型)，在我们定义函数中使用</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表名两个参数类型均为 number，且返回值也为 number</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">a: <span class="built_in">number</span>, b: <span class="built_in">number</span></span>): <span class="built_in">number</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>箭头函数写法</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sum = (<span class="attr">a</span>: <span class="built_in">number</span>, <span class="attr">b</span>: <span class="built_in">number</span>): <span class="function"><span class="params">number</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型可以让函数与多种类型一起工作，从而实现复用</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表名用户传过来的参数是什么类型，那么我就返回什么类型</span></span><br><span class="line"><span class="keyword">function</span> id&lt;T&gt;(<span class="attr">value</span>: T): T &#123;</span><br><span class="line">  <span class="keyword">return</span> value</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> id1 = id&lt;<span class="built_in">number</span>&gt;(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">const</span> id2 = <span class="title function_">id</span>(<span class="number">2</span>) <span class="comment">// 自动推断</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  注意，函数声明时的 <code>&lt;T&gt;</code> 不能省略，不能简单地认为传过来什么类型，就返回什么类型</p>
+</blockquote>
+<h3 id="…"><a href="#…" class="headerlink" title="…."></a>….</h3><p>事实上，TS 还有更多类型，这里不一一讲解，希望大家可以自行学习</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><p><code>typeof</code> 在 ts 中可以推断 ts 中的类型，使用它可以简化或者扩展功能，例如以下代码：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;</span><br><span class="line"><span class="comment">// 以下两者等同</span></span><br><span class="line"><span class="comment">// function formatPoint(point: &#123; x: number, y: number &#125;) &#123;&#125;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">formatPoint</span>(<span class="params">point: <span class="keyword">typeof</span> p</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="keyof"><a href="#keyof" class="headerlink" title="keyof"></a>keyof</h3><p><code>keyof</code> 可以获取某个<strong>类型</strong>所有键的类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">TProps</span> = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="built_in">number</span></span><br><span class="line">  <span class="attr">b</span>: <span class="built_in">boolean</span></span><br><span class="line">  <span class="attr">c</span>: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">TProp</span> = <span class="title class_">TProps</span>[keyof <span class="title class_">Tprops</span>] <span class="comment">// number | boolean | string</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="…-1"><a href="#…-1" class="headerlink" title="…"></a>…</h3><p>事实上，TS 还有更多类型，这里不一一讲解，希望大家可以自行学习</p>
+<h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><p>这里只讲解 vue 怎么用，关于 vue 如何实现的以及其他知识(例如 <code>MVVM</code> 模型、虚拟DOM等)，请参考 vue 的官网：<a target="_blank" rel="noopener" href="https://cn.vuejs.org/">https://cn.vuejs.org/</a></p>
+<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><ol>
+<li>使用 <code>yarn + vite</code> 创建 <code>vue</code> 项目</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn create vite</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>会有对应 GUI 提示如何安装</li>
+</ol>
+<blockquote>
+<p>  记得在项目里 <code>yarn</code> 一下安装依赖</p>
+</blockquote>
+<h2 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h2><p><code>vite</code> 初始化 <code>vue</code> 后，有许多文件夹，这里讲解各个文件的作用</p>
+<h3 id="已有的目录"><a href="#已有的目录" class="headerlink" title="已有的目录"></a>已有的目录</h3><ol>
+<li><code>.vscode</code></li>
+</ol>
+<p>vsocde 配置目录，可以配置插件等</p>
+<ol start="2">
+<li><code>public</code></li>
+</ol>
+<p>这里放的是公共资源，例如我们可以放<strong>图片</strong>一类的东西，如果要访问这里的资源，直接使用 <code>/xxx.png</code> 即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;img src=&#x27;/1.png&#x27; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>src</code></li>
+</ol>
+<p><code>src</code> 表示 source：资源，即我们编写代码的地方。</p>
+<ol start="4">
+<li><code>src/components</code></li>
+</ol>
+<p>编写 vue 组件的地方，通常这个目录下的组件<strong>不包含功能</strong>(例如请求后端数据等)，只做 UI 展示和复用</p>
+<ol start="5">
+<li><code>src/assets</code></li>
+</ol>
+<p>静态资源，放在此处的文件会被打包压缩，我们可以放公共的 css 样式文件等</p>
+<h3 id="以后会碰到的目录"><a href="#以后会碰到的目录" class="headerlink" title="以后会碰到的目录"></a>以后会碰到的目录</h3><p>以下介绍的目录均包含 <code>src/</code> 目录前缀：</p>
+<ol>
+<li><code>utils</code></li>
+</ol>
+<p>定义公共的方法，例如格式化时间的方法</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// utils/useFormatTime.ts</span></span><br><span class="line"><span class="keyword">const</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line"><span class="comment">// 代码逻辑...</span></span><br><span class="line"><span class="keyword">return</span> <span class="string">`xxxx-xx-xx xx:xx:xx`</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>views</code></li>
+</ol>
+<p>和 <code>components</code> 一样，这里是编写 vue 组件的，不同的是这里的组件包含<strong>功能</strong>(例如请求后端数据)</p>
+<ol start="3">
+<li><code>router</code></li>
+</ol>
+<p>配置路由的文件夹</p>
+<ol start="4">
+<li><code>store</code></li>
+</ol>
+<p>配置持久化存储的路由</p>
+<ol start="5">
+<li><code>__test__</code></li>
+</ol>
+<p>编写测试的目录</p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>每一个 <code>.vue</code> 文件都叫做组件，会有子组件和父组件之分，利用组件，我们可以将网页的视图和功能分开</p>
+<ul>
+<li><code>src/components/Son.vue</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;p&gt;</span><br><span class="line">    Son 组件</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>src/App.vue</code></li>
+</ul>
+<p>此文件是入口文件，当我们想用 <code>Son</code> 组件的内容时，只需要在 <code>&lt;script&gt;</code> 标签中导入，并当做 html 标签一样使用即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import Son from &#x27;./components/Son.vue&#x27;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;h1&gt;App 组件&lt;/h1&gt;</span><br><span class="line">    &lt;Son /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="渲染模板"><a href="#渲染模板" class="headerlink" title="渲染模板"></a>渲染模板</h2><p>Vue 中使用 <code>&#123;&#123;&#125;&#125;</code> 插值语法渲染 <code>&lt;script&gt;</code> 中定义的变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">	let str = &#x27;hello world&#x27;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &#123;&#123;str&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>&#123;&#123;&#125;&#125;</code> 内部本身就是 js 作用域，可以编写一些简单的逻辑运算，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&#123;&#123; 1 + 1 &#125;&#125;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vue-指令"><a href="#vue-指令" class="headerlink" title="vue 指令"></a>vue 指令</h2><h3 id="渲染指令"><a href="#渲染指令" class="headerlink" title="渲染指令"></a>渲染指令</h3><p>上述的渲染模板其实也是一种渲染指令，但其实 <code>vue</code> 还提供了其他两种：</p>
+<ol>
+<li><code>v-text</code></li>
+<li><code>v-html</code></li>
+</ol>
+<p>上述两者区别是，<code>v-text</code> 只会渲染文本，当文本是 <code>html</code> 类型时，渲染的还是字符串文本，而 <code>v-html</code> 则是渲染的文本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">let str = &#x27;123&#x27;</span><br><span class="line">let htmlStr = &#x27;&lt;h1&gt;hello world&lt;/h1&gt;&#x27;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div v-text=&#x27;str&#x27;&gt;&lt;/div&gt;</span><br><span class="line">	&lt;div v-text=&#x27;htmlStr&#x27;&gt;&lt;/div&gt;</span><br><span class="line">	&lt;div v-html=&#x27;htmlStr&#x27;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  实际开发中，尽量避免 <code>v-html</code>，因为这样会导致 xss 攻击，如果有必要使用，请转义后使用。</p>
+<p>  同时 <code>v-text</code> 和 <code>v-html</code> 实际开发中不常用，都是在用 <code>&#123;&#123;&#125;&#125;</code></p>
+</blockquote>
+<h3 id="条件渲染指令"><a href="#条件渲染指令" class="headerlink" title="条件渲染指令"></a>条件渲染指令</h3><p>vue 中的条件渲染指令有三种：</p>
+<ol>
+<li><code>v-if</code></li>
+<li><code>v-else-if</code></li>
+<li><code>v-else</code></li>
+</ol>
+<p>就像 JavaScript 中的判断语句一样，只不过这些指令都要写在标签的属性上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">let score = 100</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;span v-if=&quot;score &gt; 90&quot;&gt;优秀&lt;/span&gt;</span><br><span class="line">    &lt;span v-else-if=&quot;score &gt; 80&quot;&gt;良好&lt;/span&gt;</span><br><span class="line">    &lt;span v-else-if=&quot;score &gt; 60&quot;&gt;及格&lt;/span&gt;</span><br><span class="line">    &lt;span v-else&gt;不及格&lt;/span&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  注意，<code>v-if</code> 的属性值已经是个 js 作用域</p>
+</blockquote>
+<h3 id="绑定指令"><a href="#绑定指令" class="headerlink" title="绑定指令"></a>绑定指令</h3><p><code>vue</code> 提供了两种绑定指令，两种指令运用的场景不同</p>
+<ol>
+<li><code>v-bind</code>：绑定变量，简写 <code>:</code></li>
+<li><code>v-on</code>：绑定事件，简写 <code>@</code></li>
+</ol>
+<p><code>v-bind</code> 绑定指令可以绑定一个元素的属性，这个属性可以是变化的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">let id = &#x27;dynamicId&#x27;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div v-bind:id=&quot;id&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>简写直接去掉 <code>v-bind</code>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:id</span>=<span class="string">&quot;id&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>v-on</code> 可以绑定按钮的点击、鼠标悬浮事件等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">function handler() &#123;</span><br><span class="line">  console.log(&#x27;我被点击了&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;button v-on:click=&quot;handler&quot;&gt;&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>简写<code>v-on:click</code> 改为 <code>@click</code>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;handler&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="列表渲染指令"><a href="#列表渲染指令" class="headerlink" title="列表渲染指令"></a>列表渲染指令</h3><p><code>v-for</code> 列表渲染用于渲染一个数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">let scores = [&#123; name: &#x27;xm&#x27;, score: 100 &#125;, &#123; name: &#x27;xg&#x27;, score: 59 &#125;]</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div id=&quot;demo&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;item in scores&quot;&gt;</span><br><span class="line">      &lt;span&gt;name: &#123;&#123;item.xm&#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;span&gt;score: &#123;&#123;item.score&#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;span v-if=&quot;item.score &gt; 90&quot;&gt;优秀&lt;/span&gt;</span><br><span class="line">    	&lt;span v-else-if=&quot;item.score &gt; 80&quot;&gt;良好&lt;/span&gt;</span><br><span class="line">    	&lt;span v-else-if=&quot;item.score &gt; 60&quot;&gt;及格&lt;/span&gt;</span><br><span class="line">    	&lt;span v-else&gt;不及格&lt;/span&gt;</span><br><span class="line">  	&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>也可以这样书写：其中 <code>index</code> 表示索引</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in scores&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>虽然 <code>v-for</code> 循环简化了数组模板的渲染，但是也会带来性能的开销，因为 vue 本身基于<strong>虚拟 DOM</strong>，也就是说 vue 并不会像普通的 <code>document.getElementById</code> 类似的语法获取 dom 对象，它是通过一种叫做 ast 抽象语法树的转换方法，将各个 DOM 对象转换为 JS 对象，例如以下示例(伪代码)：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> virtualDOM = &#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&#x27;div&#x27;</span>,</span><br><span class="line">  <span class="attr">id</span>: <span class="string">&#x27;demo&#x27;</span>,</span><br><span class="line">  <span class="attr">class</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">children</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">el</span>: <span class="string">&#x27;div&#x27;</span>,</span><br><span class="line">      <span class="attr">id</span>: <span class="literal">null</span>,</span><br><span class="line">      <span class="attr">class</span>: <span class="literal">null</span>,</span><br><span class="line">      <span class="attr">children</span>: &#123;</span><br><span class="line">        <span class="comment">// ....</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  ]</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于不会更改的数组来说，这不算什么，但是如果对于可变的数组，例如我们要删除数组中的某个索引值，那么 DOM 转换后的 JS 对象如何知道我们删除的是哪个呢？比较复杂的方法是：<strong>遍历 JS 对象的所有属性来判断</strong>，但很明显这样太浪费性能，上述简单的例子都已经非常复杂，更不要说更加复杂的项目</p>
+<p>最适合的解决方法是：<strong>传递一个唯一的 key 值</strong>，这样 vue 只需要判断 key 值就能够知道用户删除的是哪一个了，所以更改上述代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">// 使用 id 作为唯一标识</span><br><span class="line">let scores = [</span><br><span class="line">  &#123; id: 1, name: &#x27;xm&#x27;, score: 100 &#125;,</span><br><span class="line">  &#123; id: 2, name: &#x27;xg&#x27;, score: 59 &#125;</span><br><span class="line">]</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div id=&quot;demo&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;item in scores&quot; :key=item.id&gt;</span><br><span class="line">      &lt;span&gt;name: &#123;&#123;item.xm&#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;span&gt;score: &#123;&#123;item.score&#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;span v-if=&quot;item.score &gt; 90&quot;&gt;优秀&lt;/span&gt;</span><br><span class="line">    	&lt;span v-else-if=&quot;item.score &gt; 80&quot;&gt;良好&lt;/span&gt;</span><br><span class="line">    	&lt;span v-else-if=&quot;item.score &gt; 60&quot;&gt;及格&lt;/span&gt;</span><br><span class="line">    	&lt;span v-else&gt;不及格&lt;/span&gt;</span><br><span class="line">  	&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="双向绑定指令"><a href="#双向绑定指令" class="headerlink" title="双向绑定指令"></a>双向绑定指令</h3><p>需要提前了解<strong>响应式语法</strong>，即在 <code>&lt;script&gt;</code> 中用普通方法定义的变量改变时，并不会影响视图</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">let count = 0</span><br><span class="line">function increase() &#123;</span><br><span class="line">  count ++</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &#123;&#123;count&#125;&#125;</span><br><span class="line">    &lt;button @click=&quot;increase&quot;&gt;+1&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>为此，<code>vue</code> 提供了 <code>ref</code>(其实还有 <code>reactive</code>、<code>shallowRef</code>、<code>shallowReactive</code>) 函数创建响应式语法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">let count = ref(0)</span><br><span class="line">function increase() &#123;</span><br><span class="line">  count.value ++</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &#123;&#123;count&#125;&#125;</span><br><span class="line">    &lt;button @click=&quot;increase&quot;&gt;+1&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  操作或者访问 <code>count</code> 的值，需要访问 <code>count</code> 的 <code>value</code> 属性</p>
+</blockquote>
+<p>双向绑定指令 <code>v-model</code> 多用于处理表单 <code>&lt;input&gt;</code> 之类的标签</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">let count = ref(0)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;input type=&quot;number&quot; v-model=&quot;count&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当我们输入在表单中输入值后，输入的值会自动赋值给 <code>count</code></p>
+<h2 id="vue-的一些问题"><a href="#vue-的一些问题" class="headerlink" title="vue 的一些问题"></a>vue 的一些问题</h2><p>不能说 <code>vue</code> 的一些问题，这是客户端渲染框架的通病</p>
+<p>我们用 <code>vue</code> 构建完的页面实际上只是一个“空壳”，只包含一条 js 请求代码和一个 html 标签，我们通过请求加载那个 js 代码渲染页面，但这样做会造成很多问题：</p>
+<ol>
+<li>不利于 seo 优化</li>
+<li>所有的代码都在一个 js 文件中，加载白屏时间过长</li>
+</ol>
+<p>这些问题在以后的<strong>服务端渲染框架</strong>会讲到，但这并不说明 <code>vue</code> 等框架不是最终解决方案，事实上，一些后台管理内容就很适合使用 <code>vue</code> 编写，更不用说例如 Nuxt 等服务端框架本身是 <code>vue</code> 等框架的扩展</p>
+<h2 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h2><p>props 是父组件向子组件传递数据的一种方式，只需要在子组件的属性上添加对应 prop 即可</p>
+<p>每一个 <code>.vue</code> 文件都叫做组件，会有子组件和父组件之分，利用组件，我们可以将网页的视图和功能分开</p>
+<ul>
+<li><code>src/components/Son.vue</code></li>
+</ul>
+<p>使用 <code>defineProps</code> 表示父组件传递了哪些属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">defineProps(&#123;</span><br><span class="line">  msg: String // 注意这样写和 ts 中的有所不同</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;p&gt;</span><br><span class="line">    Son 组件</span><br><span class="line">    &#123;&#123;msg&#125;&#125;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们希望使用 ts 中的类型约束，可以这样写</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">defineProps&lt;&#123;</span><br><span class="line">  <span class="attr">msg</span>: <span class="built_in">string</span></span><br><span class="line">&#125;&gt;()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>src/App.vue</code></li>
+</ul>
+<p>此文件是入口文件，当我们想用 <code>Son</code> 组件的内容时，只需要在 <code>&lt;script&gt;</code> 标签中导入，并当做 html 标签一样使用即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import Son from &#x27;./components/Son.vue&#x27;</span><br><span class="line">let str = &#x27;msg from App&#x27;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;h1&gt;App 组件&lt;/h1&gt;</span><br><span class="line">    &lt;Son :msg=&quot;str&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><p>上述讲的 <code>Props</code> 虽然解决了父子组件数据传递的问题，但是如果组件嵌套的比较深，例如 <code>父组件 -&gt; 子组件 -&gt; 孙组件 -&gt; ...</code>，如果希望父组件向孙组件传递数据，那么我们需要先传递给子组件，再传递给孙组件。解决这个问题，<code>vue</code> 提供了 <code>provide/inject</code> 依赖注入的语法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">provide(&#x27;str&#x27;, &#x27;msg from App&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">    &lt;h1&gt;App 组件&lt;/h1&gt;</span><br><span class="line">    &lt;Son :msg=&quot;str&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>App.vue 的后代组件通过 <code>inject</code> 获得</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// child.vue</span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">let str = inject(&#x27;str&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line"> 		&#123;&#123;str&#125;&#125;   </span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="…-2"><a href="#…-2" class="headerlink" title="…."></a>….</h2><p>事实上，这篇文章只讲了 vue 的冰山一角，更多请查看 <a target="_blank" rel="noopener" href="https://cn.vuejs.org/"><code>vue</code> 官网</a> 或者学习视频</p>
+<h1 id="预告"><a href="#预告" class="headerlink" title="预告"></a>预告</h1><ol>
+<li><code>pinia</code>：vue 的持久化管理插件</li>
+<li><code>vue-router</code>：vue 的路由插件</li>
+<li><code>Element-Plus</code>：经典的组件库</li>
+</ol>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2023/09/14/TS-Study/"
+      title="太菜所以学的TS二"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        太菜所以学的TS二
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/09/14/VUE3/"
+      title="VUE二战"
+     >
+
+    <p class="title-text">
+      
+        VUE二战
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2023 Cksheuen<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
